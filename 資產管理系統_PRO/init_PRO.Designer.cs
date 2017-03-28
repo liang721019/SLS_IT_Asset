@@ -161,6 +161,8 @@
             this.init_toolStrip_UID_Value = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.tb_Asset_REMARK = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.init_panel.SuspendLayout();
             this.init_tabControl.SuspendLayout();
@@ -346,7 +348,7 @@
             this.init_tabControl.Location = new System.Drawing.Point(12, 166);
             this.init_tabControl.Name = "init_tabControl";
             this.init_tabControl.SelectedIndex = 0;
-            this.init_tabControl.Size = new System.Drawing.Size(1263, 644);
+            this.init_tabControl.Size = new System.Drawing.Size(1263, 651);
             this.init_tabControl.TabIndex = 2;
             this.init_tabControl.SelectedIndexChanged += new System.EventHandler(this.init_tabControl_SelectedIndexChanged);
             // 
@@ -360,12 +362,14 @@
             this.init_tabPage1.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage1.Name = "init_tabPage1";
             this.init_tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.init_tabPage1.Size = new System.Drawing.Size(1255, 611);
+            this.init_tabPage1.Size = new System.Drawing.Size(1255, 618);
             this.init_tabPage1.TabIndex = 0;
             this.init_tabPage1.Text = "財產明細";
             // 
             // init_AssetDetail_panel
             // 
+            this.init_AssetDetail_panel.Controls.Add(this.tb_Asset_REMARK);
+            this.init_AssetDetail_panel.Controls.Add(this.label34);
             this.init_AssetDetail_panel.Controls.Add(this.init_CheckData_button);
             this.init_AssetDetail_panel.Controls.Add(this.ck_Asset_CheckData_NO);
             this.init_AssetDetail_panel.Controls.Add(this.label31);
@@ -408,12 +412,12 @@
             this.init_AssetDetail_panel.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.init_AssetDetail_panel.Location = new System.Drawing.Point(8, 6);
             this.init_AssetDetail_panel.Name = "init_AssetDetail_panel";
-            this.init_AssetDetail_panel.Size = new System.Drawing.Size(615, 433);
+            this.init_AssetDetail_panel.Size = new System.Drawing.Size(615, 441);
             this.init_AssetDetail_panel.TabIndex = 100;
             // 
             // init_CheckData_button
             // 
-            this.init_CheckData_button.Location = new System.Drawing.Point(259, 391);
+            this.init_CheckData_button.Location = new System.Drawing.Point(259, 394);
             this.init_CheckData_button.Name = "init_CheckData_button";
             this.init_CheckData_button.Size = new System.Drawing.Size(83, 35);
             this.init_CheckData_button.TabIndex = 105;
@@ -424,7 +428,7 @@
             // ck_Asset_CheckData_NO
             // 
             this.ck_Asset_CheckData_NO.AutoSize = true;
-            this.ck_Asset_CheckData_NO.Location = new System.Drawing.Point(177, 398);
+            this.ck_Asset_CheckData_NO.Location = new System.Drawing.Point(177, 401);
             this.ck_Asset_CheckData_NO.Name = "ck_Asset_CheckData_NO";
             this.ck_Asset_CheckData_NO.Size = new System.Drawing.Size(76, 24);
             this.ck_Asset_CheckData_NO.TabIndex = 104;
@@ -434,7 +438,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(13, 398);
+            this.label31.Location = new System.Drawing.Point(13, 401);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(77, 20);
             this.label31.TabIndex = 103;
@@ -443,7 +447,7 @@
             // ck_Asset_CheckData_YES
             // 
             this.ck_Asset_CheckData_YES.AutoSize = true;
-            this.ck_Asset_CheckData_YES.Location = new System.Drawing.Point(95, 398);
+            this.ck_Asset_CheckData_YES.Location = new System.Drawing.Point(95, 401);
             this.ck_Asset_CheckData_YES.Name = "ck_Asset_CheckData_YES";
             this.ck_Asset_CheckData_YES.Size = new System.Drawing.Size(76, 24);
             this.ck_Asset_CheckData_YES.TabIndex = 102;
@@ -452,7 +456,7 @@
             // 
             // dTP_Asset_GetDate_input
             // 
-            this.dTP_Asset_GetDate_input.Location = new System.Drawing.Point(584, 292);
+            this.dTP_Asset_GetDate_input.Location = new System.Drawing.Point(584, 295);
             this.dTP_Asset_GetDate_input.Name = "dTP_Asset_GetDate_input";
             this.dTP_Asset_GetDate_input.Size = new System.Drawing.Size(14, 29);
             this.dTP_Asset_GetDate_input.TabIndex = 101;
@@ -469,7 +473,7 @@
             // 
             // init_GenAssetCard
             // 
-            this.init_GenAssetCard.Location = new System.Drawing.Point(467, 391);
+            this.init_GenAssetCard.Location = new System.Drawing.Point(467, 394);
             this.init_GenAssetCard.Name = "init_GenAssetCard";
             this.init_GenAssetCard.Size = new System.Drawing.Size(131, 35);
             this.init_GenAssetCard.TabIndex = 45;
@@ -498,7 +502,7 @@
             // ck_Asset_PhaseOut
             // 
             this.ck_Asset_PhaseOut.AutoSize = true;
-            this.ck_Asset_PhaseOut.Location = new System.Drawing.Point(202, 363);
+            this.ck_Asset_PhaseOut.Location = new System.Drawing.Point(202, 366);
             this.ck_Asset_PhaseOut.Name = "ck_Asset_PhaseOut";
             this.ck_Asset_PhaseOut.Size = new System.Drawing.Size(92, 24);
             this.ck_Asset_PhaseOut.TabIndex = 34;
@@ -516,10 +520,10 @@
             // 
             // tb_Asset_ExpDT
             // 
-            this.tb_Asset_ExpDT.Location = new System.Drawing.Point(95, 361);
+            this.tb_Asset_ExpDT.Location = new System.Drawing.Point(95, 364);
             this.tb_Asset_ExpDT.Name = "tb_Asset_ExpDT";
             this.tb_Asset_ExpDT.Size = new System.Drawing.Size(85, 29);
-            this.tb_Asset_ExpDT.TabIndex = 18;
+            this.tb_Asset_ExpDT.TabIndex = 19;
             // 
             // cb_AssetATR
             // 
@@ -532,10 +536,10 @@
             // 
             // tb_addValue
             // 
-            this.tb_addValue.Location = new System.Drawing.Point(442, 327);
+            this.tb_addValue.Location = new System.Drawing.Point(442, 330);
             this.tb_addValue.Name = "tb_addValue";
             this.tb_addValue.Size = new System.Drawing.Size(156, 29);
-            this.tb_addValue.TabIndex = 17;
+            this.tb_addValue.TabIndex = 18;
             // 
             // tb_FileCrDT
             // 
@@ -546,10 +550,10 @@
             // 
             // tb_Asset_Cost
             // 
-            this.tb_Asset_Cost.Location = new System.Drawing.Point(94, 327);
+            this.tb_Asset_Cost.Location = new System.Drawing.Point(94, 330);
             this.tb_Asset_Cost.Name = "tb_Asset_Cost";
             this.tb_Asset_Cost.Size = new System.Drawing.Size(211, 29);
-            this.tb_Asset_Cost.TabIndex = 16;
+            this.tb_Asset_Cost.TabIndex = 17;
             // 
             // tb_Asset_Brand
             // 
@@ -560,10 +564,10 @@
             // 
             // tb_Asset_GetDate
             // 
-            this.tb_Asset_GetDate.Location = new System.Drawing.Point(441, 292);
+            this.tb_Asset_GetDate.Location = new System.Drawing.Point(441, 295);
             this.tb_Asset_GetDate.Name = "tb_Asset_GetDate";
             this.tb_Asset_GetDate.Size = new System.Drawing.Size(137, 29);
-            this.tb_Asset_GetDate.TabIndex = 15;
+            this.tb_Asset_GetDate.TabIndex = 16;
             // 
             // tb_Asset_SN
             // 
@@ -574,10 +578,10 @@
             // 
             // tb_PR_NO
             // 
-            this.tb_PR_NO.Location = new System.Drawing.Point(94, 294);
+            this.tb_PR_NO.Location = new System.Drawing.Point(94, 297);
             this.tb_PR_NO.Name = "tb_PR_NO";
             this.tb_PR_NO.Size = new System.Drawing.Size(211, 29);
-            this.tb_PR_NO.TabIndex = 14;
+            this.tb_PR_NO.TabIndex = 15;
             // 
             // label8
             // 
@@ -599,7 +603,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(13, 364);
+            this.label19.Location = new System.Drawing.Point(13, 367);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(77, 20);
             this.label19.TabIndex = 27;
@@ -617,7 +621,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(358, 330);
+            this.label18.Location = new System.Drawing.Point(358, 333);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(77, 20);
             this.label18.TabIndex = 26;
@@ -634,7 +638,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(13, 330);
+            this.label17.Location = new System.Drawing.Point(13, 333);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(77, 20);
             this.label17.TabIndex = 25;
@@ -652,7 +656,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(358, 298);
+            this.label16.Location = new System.Drawing.Point(358, 301);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(77, 20);
             this.label16.TabIndex = 24;
@@ -668,7 +672,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(13, 298);
+            this.label15.Location = new System.Drawing.Point(13, 301);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 20);
             this.label15.TabIndex = 23;
@@ -686,15 +690,15 @@
             // cb_Unit
             // 
             this.cb_Unit.FormattingEnabled = true;
-            this.cb_Unit.Location = new System.Drawing.Point(441, 261);
+            this.cb_Unit.Location = new System.Drawing.Point(441, 264);
             this.cb_Unit.Name = "cb_Unit";
             this.cb_Unit.Size = new System.Drawing.Size(157, 28);
-            this.cb_Unit.TabIndex = 13;
+            this.cb_Unit.TabIndex = 14;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 192);
+            this.label12.Location = new System.Drawing.Point(13, 176);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(77, 20);
             this.label12.TabIndex = 16;
@@ -703,7 +707,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(358, 266);
+            this.label14.Location = new System.Drawing.Point(358, 269);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(77, 20);
             this.label14.TabIndex = 21;
@@ -711,23 +715,23 @@
             // 
             // tb_Asset_Spec
             // 
-            this.tb_Asset_Spec.Location = new System.Drawing.Point(94, 145);
+            this.tb_Asset_Spec.Location = new System.Drawing.Point(94, 146);
             this.tb_Asset_Spec.Multiline = true;
             this.tb_Asset_Spec.Name = "tb_Asset_Spec";
-            this.tb_Asset_Spec.Size = new System.Drawing.Size(504, 109);
+            this.tb_Asset_Spec.Size = new System.Drawing.Size(504, 78);
             this.tb_Asset_Spec.TabIndex = 11;
             // 
             // tb_QTY
             // 
-            this.tb_QTY.Location = new System.Drawing.Point(95, 260);
+            this.tb_QTY.Location = new System.Drawing.Point(95, 263);
             this.tb_QTY.Name = "tb_QTY";
             this.tb_QTY.Size = new System.Drawing.Size(211, 29);
-            this.tb_QTY.TabIndex = 12;
+            this.tb_QTY.TabIndex = 13;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(13, 266);
+            this.label13.Location = new System.Drawing.Point(13, 269);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(77, 20);
             this.label13.TabIndex = 18;
@@ -754,7 +758,7 @@
             this.seller_panel.Controls.Add(this.tb_retailNM);
             this.seller_panel.Controls.Add(this.tb_retail_Contact_NM);
             this.seller_panel.Controls.Add(this.tb_retail_ID);
-            this.seller_panel.Location = new System.Drawing.Point(8, 445);
+            this.seller_panel.Location = new System.Drawing.Point(8, 453);
             this.seller_panel.Name = "seller_panel";
             this.seller_panel.Size = new System.Drawing.Size(615, 160);
             this.seller_panel.TabIndex = 44;
@@ -987,7 +991,7 @@
             // 
             this.init_tabPage2.Controls.Add(this.dataGridView1);
             this.init_tabPage2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.init_tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.init_tabPage2.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage2.Name = "init_tabPage2";
             this.init_tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.init_tabPage2.Size = new System.Drawing.Size(1255, 618);
@@ -1017,7 +1021,7 @@
             // 
             this.init_tabPage3.Controls.Add(this.dataGridView2);
             this.init_tabPage3.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.init_tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.init_tabPage3.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage3.Name = "init_tabPage3";
             this.init_tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.init_tabPage3.Size = new System.Drawing.Size(1255, 618);
@@ -1078,10 +1082,10 @@
             // 
             this.init_tabPage5.BackColor = System.Drawing.Color.Transparent;
             this.init_tabPage5.Controls.Add(this.dataGridView4);
-            this.init_tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.init_tabPage5.Location = new System.Drawing.Point(4, 22);
             this.init_tabPage5.Name = "init_tabPage5";
             this.init_tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.init_tabPage5.Size = new System.Drawing.Size(1255, 611);
+            this.init_tabPage5.Size = new System.Drawing.Size(1255, 618);
             this.init_tabPage5.TabIndex = 4;
             this.init_tabPage5.Text = "其他查詢";
             // 
@@ -1099,7 +1103,7 @@
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dataGridView4.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(1249, 605);
+            this.dataGridView4.Size = new System.Drawing.Size(1249, 612);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellDoubleClick);
             // 
@@ -1317,7 +1321,7 @@
             this.init_toolStrip_IP_Value,
             this.init_UID,
             this.init_toolStrip_UID_Value});
-            this.init_statusStrip1.Location = new System.Drawing.Point(0, 824);
+            this.init_statusStrip1.Location = new System.Drawing.Point(0, 831);
             this.init_statusStrip1.Name = "init_statusStrip1";
             this.init_statusStrip1.Size = new System.Drawing.Size(1287, 22);
             this.init_statusStrip1.TabIndex = 9;
@@ -1381,11 +1385,27 @@
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(23, 23);
             // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(44, 234);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(45, 20);
+            this.label34.TabIndex = 106;
+            this.label34.Text = "備註:";
+            // 
+            // tb_Asset_REMARK
+            // 
+            this.tb_Asset_REMARK.Location = new System.Drawing.Point(95, 229);
+            this.tb_Asset_REMARK.Name = "tb_Asset_REMARK";
+            this.tb_Asset_REMARK.Size = new System.Drawing.Size(503, 29);
+            this.tb_Asset_REMARK.TabIndex = 12;
+            // 
             // init_PRO
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(1287, 846);
+            this.ClientSize = new System.Drawing.Size(1287, 853);
             this.Controls.Add(this.init_tabControl);
             this.Controls.Add(this.init_statusStrip1);
             this.Controls.Add(this.panel3);
@@ -1558,5 +1578,7 @@
         private System.Windows.Forms.Button init_CheckData_button;
         private System.Windows.Forms.TabPage init_tabPage5;
         private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.TextBox tb_Asset_REMARK;
+        private System.Windows.Forms.Label label34;
     }
 }

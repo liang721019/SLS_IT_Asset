@@ -140,7 +140,7 @@ namespace 財產管理系統
             tb_Asset_Warranty.ReadOnly = true;   //<保固期限>的textbox唯讀 
             tb_Asset_ExpDT.ReadOnly = true;      //<使用年限>的textbox唯讀
             tb_Asset_Spec.ReadOnly = true;       //<規格明細>的textbox唯讀            
-
+            tb_Asset_REMARK.ReadOnly = true;     //<備註>的textbox唯讀
             tb_QTY.ReadOnly = true;              //<數量>的textbox唯讀
             cb_Unit.Enabled = false;             //<單位>的combobox不啟動
             tb_PR_NO.ReadOnly = true;            //<請購單號>的textbox唯讀
@@ -246,6 +246,7 @@ namespace 財產管理系統
                 tb_Asset_SN.Text = fun.ds_index.Tables[0].Rows[0]["產品序號"].ToString();
                 tb_Asset_Warranty.Text = fun.ds_index.Tables[0].Rows[0]["保固期限"].ToString();
                 tb_Asset_Spec.Text = fun.ds_index.Tables[0].Rows[0]["規格明細"].ToString();
+                tb_Asset_REMARK.Text = fun.ds_index.Tables[0].Rows[0]["備註"].ToString();
                 tb_QTY.Text = fun.ds_index.Tables[0].Rows[0]["數量"].ToString();
                 cb_Unit.Text = fun.ds_index.Tables[0].Rows[0]["單位"].ToString();
                 tb_PR_NO.Text = fun.ds_index.Tables[0].Rows[0]["請購單號"].ToString();
@@ -739,7 +740,8 @@ namespace 財產管理系統
                                          @"','" + tb_PR_NO.Text.Trim() +              //請購單號
                                          @"','" + cb_StoredLoc.Text.Trim() +          //存放地點
                                          //@"','" + tb_OwnerDept_Lv1.Text.Trim() +      //保管人部門
-                                         @"','" + tb_OwnerID.Text.Trim() +      //保管人員編                                         
+                                         @"','" + tb_OwnerID.Text.Trim() +      //保管人員編
+                                         @"','" + tb_Asset_REMARK.Text.Trim() +       //備註
                                          @"','N'" +
                                          @",''" +            //主檔PDF檔存放位置
                                          @",'" + tb_PDFPosition.Text.Trim() +       //主檔PDF檔檔名
@@ -782,7 +784,8 @@ namespace 財產管理系統
                                  "','" +               //修改記錄檔存放位置
                                  "','" + fun.SAUkey_tb_PDFmodify_Position +            //修改記錄檔檔案名稱
                                  "','" + init_toolStrip_UID_Value.Text +               //User
-                                 "','" + DTP_Asset_TrDate.Text +               //保管人異動日期                                 
+                                 "','" + DTP_Asset_TrDate.Text +               //保管人異動日期
+                                 "','" + tb_Asset_REMARK.Text.Trim() +       //備註
                                  "'";
 
                 #endregion
@@ -798,6 +801,7 @@ namespace 財產管理系統
             }
             else if (xQL == "其他查詢")
             {
+                #region 其他查詢
                 fun.Query_DB = @"select [Asset_ID]	As 資產編號
 		                             ,[Asset_NAME]	AS 資產名稱
 		                             ,[Asset_LOCATION]	AS 存放位置
@@ -808,6 +812,7 @@ namespace 財產管理系統
                                      ,[ASSET_CKID]  AS 審核人員
                                 from [TEST_SLSYHI].[dbo].[SLS_Asset_View]()
                                 where [Asset_ID] is not null ";
+                #endregion
             }
 
         }        
@@ -1108,6 +1113,23 @@ namespace 財產管理系統
 
         }
 
+        public void refashDT(string x)
+        {
+            if (tb_OwnerID.Text != "")
+            {
+                Get_SQL("資產異動紀錄", tb_Asset_ID.Text, null);
+                fun.xxx_DB(fun.Query_DB, this.dataGridView1);
+                Get_SQL("保管人所有資產", tb_OwnerID.Text, null);
+                fun.xxx_DB(fun.Query_DB, this.dataGridView3);
+
+                Get_SQL("查詢", x, null);    //語法丟進fun.Query_DB
+                fun.ProductDB_ds(fun.Query_DB);         //連接DB-執行DB指令
+                sub_();         //TestBOX與DB欄位的對應 
+                
+            }
+
+        }
+
         //==============================================================================================================
         #endregion
 
@@ -1121,7 +1143,7 @@ namespace 財產管理系統
                     Get_SQL("查詢", tb_Asset_ID.Text, null);    //語法丟進fun.Query_DB
                     fun.ProductDB_ds(fun.Query_DB);         //連接DB-執行DB指令
                     if (fun.ds_index.Tables[0].Rows.Count != 0)         //辨別是否有資產編號
-                    {
+                    {                        
                         default_status();  //預設值
                         sub_();         //TestBOX與DB欄位的對應
                         init_Add_button.Enabled = true;      //<新增>啟動
@@ -1130,13 +1152,12 @@ namespace 財產管理系統
                         init_Del_button.Enabled = true;         //<刪除>啟動
                         init_Cancel_button.Enabled = false;     //<取消>不啟動
                         init_Save_button.Enabled = false;    //<儲存>不啟動
-                        init_GenAssetCard.Enabled = true;     //<產生財產卡>按鈕開啟                        
-
+                        init_GenAssetCard.Enabled = true;     //<產生財產卡>按鈕開啟
                     }
                     else
                     {
                         MessageBox.Show("查無此編號!!!", SYS_TXT);
-                    }
+                    }                    
                     #endregion                   
                 }
             }
@@ -1209,6 +1230,7 @@ namespace 財產管理系統
                         Get_SQL("資產異動紀錄", tb_Asset_ID.Text, null);
                         fun.xxx_DB(fun.Query_DB, this.dataGridView1);
                     }
+                    
                     #endregion
                 }
                 else if (init_tabControl.SelectedIndex == 2)            //分頁<保管人資產統計>
@@ -1354,10 +1376,10 @@ namespace 財產管理系統
             {
                 if (this.Text == SYS_TXT)
                 {
-                    string seller_ID = dataGridView3.CurrentRow.Cells[3].Value.ToString();
+                    string seller_ID = dataGridView3.CurrentRow.Cells[3].Value.ToString();                    
                     Get_SQL("查詢", seller_ID, null);    //語法丟進fun.Query_DB
                     fun.ProductDB_ds(fun.Query_DB);         //連接DB-執行DB指令
-                    sub_();         //TestBOX與DB欄位的對應                
+                    sub_();         //TestBOX與DB欄位的對應
                     init_GenAssetCard.Enabled = true;       //<產生財產卡>啟動
                     init_tabControl.SelectedIndex = 0;
                 }
@@ -1392,11 +1414,10 @@ namespace 財產管理系統
                 if (this.Text == SYS_TXT)
                 {
                     string seller_ID = dataGridView4.CurrentRow.Cells[0].Value.ToString();
-
-                    //tb_Asset_ID.Text = dataGridView3.CurrentRow.Cells[3].Value.ToString();
+                    tb_Asset_ID.Text = dataGridView3.CurrentRow.Cells[3].Value.ToString();
                     Get_SQL("查詢", seller_ID, null);    //語法丟進fun.Query_DB
                     fun.ProductDB_ds(fun.Query_DB);         //連接DB-執行DB指令
-                    sub_();         //TestBOX與DB欄位的對應                
+                    sub_();         //TestBOX與DB欄位的對應
                     init_GenAssetCard.Enabled = true;       //<產生財產卡>啟動
                     init_tabControl.SelectedIndex = 0;
                 }
