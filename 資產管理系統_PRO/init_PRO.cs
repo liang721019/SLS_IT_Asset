@@ -272,6 +272,7 @@ namespace 財產管理系統
                 {
                     ck_Asset_CheckData_YES.Checked = true;
                     ck_Asset_CheckData_NO.Checked = false;
+                    init_CheckData_button.Visible = false;
                     
                 }
                 else
@@ -1414,7 +1415,7 @@ namespace 財產管理系統
                 if (this.Text == SYS_TXT)
                 {
                     string seller_ID = dataGridView4.CurrentRow.Cells[0].Value.ToString();
-                    tb_Asset_ID.Text = dataGridView3.CurrentRow.Cells[3].Value.ToString();
+                    tb_Asset_ID.Text = dataGridView4.CurrentRow.Cells[3].Value.ToString();
                     Get_SQL("查詢", seller_ID, null);    //語法丟進fun.Query_DB
                     fun.ProductDB_ds(fun.Query_DB);         //連接DB-執行DB指令
                     sub_();         //TestBOX與DB欄位的對應
