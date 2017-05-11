@@ -748,7 +748,7 @@ namespace 財產管理系統
                                          @",'" + tb_PDFPosition.Text.Trim() +       //主檔PDF檔檔名
                                          @"','" + init_toolStrip_UID_Value.Text +       //使用者ID
                                          @"','" + DTP_Asset_TrDate.Text +       //保管人異動日期
-                                         "'";      
+                                         "'";
 
 
 
@@ -982,6 +982,8 @@ namespace 財產管理系統
                     this.tb_PDFPosition.AllowDrop = false;           //關閉<tb_PDFPosition>拖移功能
                     this.tb_PDFmodify_Position.AllowDrop = false;    //關閉<tb_PDFmodify_Position>拖移功能
                     fun.clear_method(init_AssetDetail_panel);
+                    tb_PDFPosition.Text = "";
+                    tb_PDFmodify_Position.Text = "";
 
                 }
                 else if (this.Text == SYS_TXT+"-[查詢]")
@@ -1630,10 +1632,5 @@ namespace 財產管理系統
 
         }
 
-        
-
-        
-
-        
     }
 }

@@ -55,6 +55,8 @@
             this.init_tabControl = new System.Windows.Forms.TabControl();
             this.init_tabPage1 = new System.Windows.Forms.TabPage();
             this.init_AssetDetail_panel = new System.Windows.Forms.Panel();
+            this.tb_Asset_REMARK = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.init_CheckData_button = new System.Windows.Forms.Button();
             this.ck_Asset_CheckData_NO = new System.Windows.Forms.CheckBox();
             this.label31 = new System.Windows.Forms.Label();
@@ -161,8 +163,6 @@
             this.init_toolStrip_UID_Value = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label34 = new System.Windows.Forms.Label();
-            this.tb_Asset_REMARK = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.init_panel.SuspendLayout();
             this.init_tabControl.SuspendLayout();
@@ -414,6 +414,22 @@
             this.init_AssetDetail_panel.Name = "init_AssetDetail_panel";
             this.init_AssetDetail_panel.Size = new System.Drawing.Size(615, 441);
             this.init_AssetDetail_panel.TabIndex = 100;
+            // 
+            // tb_Asset_REMARK
+            // 
+            this.tb_Asset_REMARK.Location = new System.Drawing.Point(95, 229);
+            this.tb_Asset_REMARK.Name = "tb_Asset_REMARK";
+            this.tb_Asset_REMARK.Size = new System.Drawing.Size(503, 29);
+            this.tb_Asset_REMARK.TabIndex = 12;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(44, 234);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(45, 20);
+            this.label34.TabIndex = 106;
+            this.label34.Text = "備註:";
             // 
             // init_CheckData_button
             // 
@@ -1051,7 +1067,7 @@
             // 
             this.init_tabPage4.Controls.Add(this.dataGridView3);
             this.init_tabPage4.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.init_tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.init_tabPage4.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage4.Name = "init_tabPage4";
             this.init_tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.init_tabPage4.Size = new System.Drawing.Size(1255, 618);
@@ -1082,7 +1098,7 @@
             // 
             this.init_tabPage5.BackColor = System.Drawing.Color.Transparent;
             this.init_tabPage5.Controls.Add(this.dataGridView4);
-            this.init_tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.init_tabPage5.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage5.Name = "init_tabPage5";
             this.init_tabPage5.Padding = new System.Windows.Forms.Padding(3);
             this.init_tabPage5.Size = new System.Drawing.Size(1255, 618);
@@ -1384,22 +1400,6 @@
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(23, 23);
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(44, 234);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(45, 20);
-            this.label34.TabIndex = 106;
-            this.label34.Text = "備註:";
-            // 
-            // tb_Asset_REMARK
-            // 
-            this.tb_Asset_REMARK.Location = new System.Drawing.Point(95, 229);
-            this.tb_Asset_REMARK.Name = "tb_Asset_REMARK";
-            this.tb_Asset_REMARK.Size = new System.Drawing.Size(503, 29);
-            this.tb_Asset_REMARK.TabIndex = 12;
             // 
             // init_PRO
             // 
