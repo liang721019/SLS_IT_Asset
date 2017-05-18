@@ -234,6 +234,7 @@ namespace 財產管理系統
             }
 
         }        
+
         public void default_status()  //預設控制元
         {
             //※在這個方法裡面不能使用fun.ProductDB_ds(fun.Query_DB)的方法※
@@ -581,8 +582,46 @@ namespace 財產管理系統
             }
             else if (ss == init_Cancel_button)     //取消
             {
-                
-                                
+                #region 取消
+                if (this.Text == SYS_TXT + "-[新增]")
+                {
+                    default_value(); //清空值
+                    default_status();  //預設值
+                }
+                else if (this.Text == SYS_TXT + "-[修改]")
+                {
+                    this.Text = SYS_TXT;
+                    fun.Enabled_Panel_btn(init_panel);
+                    fun.Disabled_Panel(panel1);
+                    fun.Disabled_TabPage(init_tabPage1);
+                    fun.Disabled_TabPage_btn(init_tabPage1);
+                    fun.Disabled_Panel(init_AssetDetail_panel);
+
+                    init_Save_button.Enabled = false;
+                    init_Cancel_button.Enabled = false;
+                    init_RetailData.Enabled = false;
+                    init_PDFbutton.Enabled = false;
+                    init_PDFmodify_button.Enabled = false;
+                    btn_QueryEmpID.Enabled = false;
+                    dTP_Asset_GetDate_input.Enabled = false;
+                    DTP_Asset_TrDate.Enabled = false;
+
+                    this.tb_PDFPosition.AllowDrop = false;           //關閉<tb_PDFPosition>拖移功能
+                    this.tb_PDFmodify_Position.AllowDrop = false;    //關閉<tb_PDFmodify_Position>拖移功能
+                    fun.clear_method(init_AssetDetail_panel);
+                    tb_PDFPosition.Text = "";
+                    tb_PDFmodify_Position.Text = "";
+
+                }
+                else if (this.Text == SYS_TXT + "-[查詢]")
+                {
+                    default_value(); //清空值
+                    default_status();  //預設值
+                }
+                dataGridView1.Columns.Clear();          //清除dataGridView1的資料
+                dataGridView2.Columns.Clear();          //清除dataGridView2的資料
+
+                #endregion
             }
             else if (ss == init_QueryOwnerAsset_button)         //其他-查詢
             {
@@ -963,43 +1002,7 @@ namespace 財產管理系統
 
             if (MessageBox.Show("確定要取消？", "警告!!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (this.Text == SYS_TXT+"-[新增]")
-                {                    
-                    default_value(); //清空值
-                    default_status();  //預設值
-                }
-                else if (this.Text == SYS_TXT+"-[修改]")
-                {
-                    this.Text = SYS_TXT;
-                    fun.Enabled_Panel_btn(init_panel);
-                    fun.Disabled_Panel(panel1);
-                    fun.Disabled_TabPage(init_tabPage1);
-                    fun.Disabled_TabPage_btn(init_tabPage1);
-                    fun.Disabled_Panel(init_AssetDetail_panel);
-
-                    init_Save_button.Enabled = false;
-                    init_Cancel_button.Enabled = false;
-                    init_RetailData.Enabled = false;
-                    init_PDFbutton.Enabled = false;
-                    init_PDFmodify_button.Enabled = false;
-                    btn_QueryEmpID.Enabled = false;
-                    dTP_Asset_GetDate_input.Enabled = false;
-
-                    this.tb_PDFPosition.AllowDrop = false;           //關閉<tb_PDFPosition>拖移功能
-                    this.tb_PDFmodify_Position.AllowDrop = false;    //關閉<tb_PDFmodify_Position>拖移功能
-                    fun.clear_method(init_AssetDetail_panel);
-                    tb_PDFPosition.Text = "";
-                    tb_PDFmodify_Position.Text = "";
-
-                }
-                else if (this.Text == SYS_TXT+"-[查詢]")
-                {                    
-                    default_value(); //清空值
-                    default_status();  //預設值
-                }                                
-                dataGridView1.Columns.Clear();          //清除dataGridView1的資料
-                dataGridView2.Columns.Clear();          //清除dataGridView2的資料
-
+                start_status(init_Cancel_button);
             }
         }
 
@@ -1167,6 +1170,8 @@ namespace 財產管理系統
                     tb_Asset_ID.Text = "";
                     tb_Asset_NM.Text = "";
                     cb_StoredLoc.SelectedIndex = -1;
+                    default_value();  //預設Textbox清空
+
                 }
                 #region 依目前的分項-清除dataGridView的內容
                 if (init_tabControl.SelectedIndex == 2)
