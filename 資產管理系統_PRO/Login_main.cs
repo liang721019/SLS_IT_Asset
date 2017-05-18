@@ -97,7 +97,7 @@ namespace 財產管理系統
             if (LoginMOD_ServerCB.Text != "")
             {                
                 App_LoginPW = fun.desEncrypt_A(LoginOLD_PWD_tb.Text, "naturalbiokeyLogin");
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[[SLS_Asset_Login] '" +
+                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_Login] '" +
                                     LoginMOD_ID_tb.Text +
                                     @"','" + App_LoginPW + "'";
                 fun.ProductDB_ds(fun.Query_DB);
