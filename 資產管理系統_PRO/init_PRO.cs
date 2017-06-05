@@ -1473,7 +1473,7 @@ namespace 財產管理系統
                 {
                     try
                     {
-                        File_SAccress_T();          //依系統狀態取得設定的檔案存放位置
+                        File_SAccress_T();          //依系統狀態取得設定的檔案存放位置                        
                         fun.openPdf(Sys_Asset_ModifyInfo + "\\" + Transaction_FileName);
                     }
                     catch (Exception)

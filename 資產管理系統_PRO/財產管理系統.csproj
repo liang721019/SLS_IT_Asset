@@ -90,6 +90,9 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\..\..\source\資產管理系統_20160106_V2\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="LOGIN">
+      <HintPath>..\..\LOGIN\LOGIN\bin\Debug\LOGIN.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\..\..\..\source\資產管理系統_20160106_V2\packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
     </Reference>
