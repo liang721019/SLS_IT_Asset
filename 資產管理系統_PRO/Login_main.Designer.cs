@@ -1,6 +1,6 @@
 ﻿namespace 財產管理系統
 {
-    partial class Login_main
+    partial class LoginA_main
     {
         /// <summary>
         /// Required designer variable.

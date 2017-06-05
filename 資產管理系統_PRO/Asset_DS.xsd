@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Asset_DS" targetNamespace="http://tempuri.org/Asset_DS.xsd" xmlns:mstns="http://tempuri.org/Asset_DS.xsd" xmlns="http://tempuri.org/Asset_DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Asset_DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Asset_DS" msprop:Generator_UserDSName="Asset_DS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SLS_Asset_LOGIN" msprop:Generator_TableClassName="SLS_Asset_LOGINDataTable" msprop:Generator_TableVarName="tableSLS_Asset_LOGIN" msprop:Generator_TablePropName="SLS_Asset_LOGIN" msprop:Generator_RowDeletingName="SLS_Asset_LOGINRowDeleting" msprop:Generator_RowChangingName="SLS_Asset_LOGINRowChanging" msprop:Generator_RowEvHandlerName="SLS_Asset_LOGINRowChangeEventHandler" msprop:Generator_RowDeletedName="SLS_Asset_LOGINRowDeleted" msprop:Generator_UserTableName="SLS_Asset_LOGIN" msprop:Generator_RowChangedName="SLS_Asset_LOGINRowChanged" msprop:Generator_RowEvArgName="SLS_Asset_LOGINRowChangeEvent" msprop:Generator_RowClassName="SLS_Asset_LOGINRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EMP_ID" msprop:Generator_ColumnVarNameInTable="columnEMP_ID" msprop:Generator_ColumnPropNameInRow="EMP_ID" msprop:Generator_ColumnPropNameInTable="EMP_IDColumn" msprop:Generator_UserColumnName="EMP_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="EMP_Name" msprop:Generator_ColumnVarNameInTable="columnEMP_Name" msprop:Generator_ColumnPropNameInRow="EMP_Name" msprop:Generator_ColumnPropNameInTable="EMP_NameColumn" msprop:Generator_UserColumnName="EMP_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Asset_Login" msprop:Generator_ColumnVarNameInTable="columnAsset_Login" msprop:Generator_ColumnPropNameInRow="Asset_Login" msprop:Generator_ColumnPropNameInTable="Asset_LoginColumn" msprop:Generator_UserColumnName="Asset_Login" type="xs:string" minOccurs="0" />
+              <xs:element name="Asset_ROOT" msprop:Generator_ColumnVarNameInTable="columnAsset_ROOT" msprop:Generator_ColumnPropNameInRow="Asset_ROOT" msprop:Generator_ColumnPropNameInTable="Asset_ROOTColumn" msprop:Generator_UserColumnName="Asset_ROOT" type="xs:string" minOccurs="0" />
+              <xs:element name="Asset_ADD" msprop:Generator_ColumnVarNameInTable="columnAsset_ADD" msprop:Generator_ColumnPropNameInRow="Asset_ADD" msprop:Generator_ColumnPropNameInTable="Asset_ADDColumn" msprop:Generator_UserColumnName="Asset_ADD" type="xs:string" minOccurs="0" />
+              <xs:element name="Asset_Modify" msprop:Generator_ColumnVarNameInTable="columnAsset_Modify" msprop:Generator_ColumnPropNameInRow="Asset_Modify" msprop:Generator_ColumnPropNameInTable="Asset_ModifyColumn" msprop:Generator_UserColumnName="Asset_Modify" type="xs:string" minOccurs="0" />
+              <xs:element name="Asset_Del" msprop:Generator_ColumnVarNameInTable="columnAsset_Del" msprop:Generator_ColumnPropNameInRow="Asset_Del" msprop:Generator_ColumnPropNameInTable="Asset_DelColumn" msprop:Generator_UserColumnName="Asset_Del" type="xs:string" minOccurs="0" />
+              <xs:element name="Asset_Query" msprop:Generator_ColumnVarNameInTable="columnAsset_Query" msprop:Generator_ColumnPropNameInRow="Asset_Query" msprop:Generator_ColumnPropNameInTable="Asset_QueryColumn" msprop:Generator_UserColumnName="Asset_Query" type="xs:string" minOccurs="0" />
+              <xs:element name="Asset_Other" msprop:Generator_ColumnVarNameInTable="columnAsset_Other" msprop:Generator_ColumnPropNameInRow="Asset_Other" msprop:Generator_ColumnPropNameInTable="Asset_OtherColumn" msprop:Generator_UserColumnName="Asset_Other" type="xs:string" minOccurs="0" />
+              <xs:element name="Asset_CheckData" msprop:Generator_ColumnVarNameInTable="columnAsset_CheckData" msprop:Generator_ColumnPropNameInRow="Asset_CheckData" msprop:Generator_ColumnPropNameInTable="Asset_CheckDataColumn" msprop:Generator_UserColumnName="Asset_CheckData" type="xs:string" minOccurs="0" />
+              <xs:element name="Del_Flag" msprop:Generator_ColumnVarNameInTable="columnDel_Flag" msprop:Generator_ColumnPropNameInRow="Del_Flag" msprop:Generator_ColumnPropNameInTable="Del_FlagColumn" msprop:Generator_UserColumnName="Del_Flag" type="xs:string" minOccurs="0" />
+              <xs:element name="Create_Date" msprop:Generator_ColumnVarNameInTable="columnCreate_Date" msprop:Generator_ColumnPropNameInRow="Create_Date" msprop:Generator_ColumnPropNameInTable="Create_DateColumn" msprop:Generator_UserColumnName="Create_Date" type="xs:string" minOccurs="0" />
+              <xs:element name="Create_Time" msprop:Generator_ColumnVarNameInTable="columnCreate_Time" msprop:Generator_ColumnPropNameInRow="Create_Time" msprop:Generator_ColumnPropNameInTable="Create_TimeColumn" msprop:Generator_UserColumnName="Create_Time" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -11,13 +11,13 @@ using function.lib;
 
 namespace 財產管理系統
 {
-    public partial class Login_main : Form
+    public partial class LoginA_main : Form
     {
 
         init_function fun = new init_function();
 
 
-        public Login_main()
+        public LoginA_main()
         {
             InitializeComponent();
         }

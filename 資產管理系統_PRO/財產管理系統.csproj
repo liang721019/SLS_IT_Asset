@@ -118,6 +118,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asset_DS.cs">
+      <DependentUpon>Asset_DS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Asset_DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Asset_DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="init_Asset_ID_Set.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +197,17 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Asset_DS.xsc">
+      <DependentUpon>Asset_DS.xsd</DependentUpon>
+    </None>
+    <None Include="Asset_DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Asset_DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Asset_DS.xss">
+      <DependentUpon>Asset_DS.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

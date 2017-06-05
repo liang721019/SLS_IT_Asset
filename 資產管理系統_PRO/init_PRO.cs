@@ -20,15 +20,17 @@ using function.lib;
  * @Creation                :2016/10/6
  * @Modify                  :2017/05/11
  * ****************************************************************************************
+ * 2017/06/05  :@修改LOGIN程式
  * 2017/05/11  :@新增檔案選取-word檔
- * 2017/05/11  :@當按<取消>後-不會清除tb_PDFPosition中的文字
+ * 2017/05/11  :@當按<取消>後-不會清除tb_PDFPosition中的文字 
 */
 
 namespace 財產管理系統
 {
     public partial class init_PRO : Form
     {
-        Asset_init_function fun = new Asset_init_function(); 
+        Asset_init_function fun = new Asset_init_function();
+        Asset_DS ADS = new Asset_DS();
         
         public init_PRO()
         {
@@ -39,6 +41,7 @@ namespace 財產管理系統
         {
             init_sys_status.Text = "PRD";
             default_status();
+            dataGridView5.DataSource = ADS.SLS_Asset_LOGIN;
             SYS_系統設定ToolStripMenuItem_Status_Key();
             combobox_set();   //Combobox設定
             default_value(); //清空值
@@ -57,10 +60,30 @@ namespace 財產管理系統
 
         public string SYS_TXT = "財產管理系統";
 
+        public Asset_init_function AssetFUN      //Asset_init_function
+        {
+            get
+            {
+                return fun;
+            }
+        }
+
         public string Query_DB_AssetATR     //SQL語法變數
         {
             set;
             get;
+        }
+
+        public DataSet MYDS         //DS
+        {
+            set 
+            {
+                value = ADS;
+            }
+            get 
+            {
+                return ADS;
+            }
         }
 
         public string default_FileRoot
@@ -863,20 +886,11 @@ namespace 財產管理系統
 
         public void Login_check_bt()        //依登入的使用者設定button顯示狀態
         {
-            fun.Query_DB = @"select [Asset_CheckData]  from [TEST_SLSYHI].[dbo].[SLS_Employees] where [EMP_ID] = '" + init_toolStrip_UID_Value.Text + "' and [Asset_CheckData] = 'Y'";
-            fun.LoginDB_ds(fun.Query_DB);            
-            if (fun.ds_index.Tables[0].Rows.Count == 1)
-            {
-                init_CheckData_button.Visible = true;      //<核准>打開
-
-            }
-            else
-            {
-                init_CheckData_button.Visible = false;      //<核准>關閉
-            }
+            DataView DViewLOGIN = new DataView(ADS.SLS_Asset_LOGIN);
+            DViewLOGIN.RowFilter = "Asset_CheckData = Y";
+            init_CheckData_button.Visible = DViewLOGIN.Count == 1 ? true /*<核准>打開*/ : false /*<核准>關閉*/;            
         }
-        
-        
+
         //======================================================================================
         #endregion
 
@@ -1058,7 +1072,7 @@ namespace 財產管理系統
 
         private void 登出ToolStripMenuItem_Click(object sender, EventArgs e)          //登出
         {
-            Login_main Login = new Login_main();
+            LoginA_main Login = new LoginA_main();
             this.Hide();
             Login.ShowDialog();
             this.Close();
