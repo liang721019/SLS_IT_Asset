@@ -27,11 +27,10 @@
     <ErrorReportUrl>http://www.naturalbiokey.com</ErrorReportUrl>
     <ProductName>財產管理系統</ProductName>
     <PublisherName>SLS</PublisherName>
-    <MinimumRequiredVersion>1.0.10.50</MinimumRequiredVersion>
-    <WebPage>publish.htm</WebPage>
+    <MinimumRequiredVersion>1.0.10.51</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>51</ApplicationRevision>
+    <ApplicationRevision>52</ApplicationRevision>
     <ApplicationVersion>1.0.10.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -47,7 +46,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>true</Prefer32Bit>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -163,11 +162,8 @@
     <Compile Include="init_Staff.Designer.cs">
       <DependentUpon>init_Staff.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login_main.cs">
+    <Compile Include="LOGIN_UI.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login_main.Designer.cs">
-      <DependentUpon>Login_main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,9 +184,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="init_Staff.resx">
       <DependentUpon>init_Staff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login_main.resx">
-      <DependentUpon>Login_main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

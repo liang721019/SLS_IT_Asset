@@ -41,8 +41,7 @@ namespace 財產管理系統
         {
             init_sys_status.Text = "PRD";
             default_status();
-            dataGridView5.DataSource = ADS.SLS_Asset_LOGIN;
-            SYS_系統設定ToolStripMenuItem_Status_Key();
+            dataGridView5.DataSource = ADS.SLS_Asset_LOGIN;            
             combobox_set();   //Combobox設定
             default_value(); //清空值
             fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value); //取得ip及mac位置
@@ -270,17 +269,20 @@ namespace 財產管理系統
             fun.Disabled_Panel_Tab(init_panel);         //關閉<init_panel>Tab
             fun.Disabled_Panel_Tab(seller_panel);       //關閉<seller_panel>Tab
             fun.Disabled_Panel_Tab(init_PDF_panel);     //關閉<init_PDF_panel>Tab
-            
+            fun.Login_check_ToF("Asset_ADD", true, ADS.SLS_Asset_LOGIN, init_Add_button);        //<新增>-依登入的使用者設定button顯示狀態
+            fun.Login_check_ToF("Asset_Modify", true, ADS.SLS_Asset_LOGIN, init_Modify_button);  //<修改>-依登入的使用者設定button顯示狀態
+            fun.Login_check_ToF("Asset_Del", true, ADS.SLS_Asset_LOGIN, init_Del_button);        //<刪除>-依登入的使用者設定button顯示狀態
+            fun.Login_check_ToF("Asset_ADD", true, ADS.SLS_Asset_LOGIN, 廠商資料維護ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
+            fun.Login_check_ToF("Asset_ROOT", true, ADS.SLS_Asset_LOGIN, 下拉選項設定ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
+            fun.Login_check_ToF("Asset_ROOT", true, ADS.SLS_Asset_LOGIN, 系統設定ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
             #endregion
 
             #region 表頭控制項<啟動>or<關閉>
-
-            
             cb_StoredLoc.Text = "";
             tb_Asset_ID.ReadOnly = true;         //<財產編號>的textbox唯讀
             btn_Asset_ID_input.Enabled = false;     //<導入財產編號>的Button
             tb_Asset_NM.ReadOnly = true;         //<財產名稱>的textbox唯讀
-            cb_StoredLoc.Enabled = false;        //<存放地點>的combobox不啟動            
+            cb_StoredLoc.Enabled = false;        //<存放地點>的combobox不啟動
             tb_OwnerID.ReadOnly = true;          //<保管人員編>的textbox唯讀
             tb_Owner_NM.ReadOnly = true;         //<保管人姓名>的textbox唯讀            
             tb_OwnerDept_Lv1.ReadOnly = true;    //<部門>的textbox唯讀
@@ -292,8 +294,8 @@ namespace 財產管理系統
             init_Del_button.Enabled = true;         //<刪除>啟動
             init_Cancel_button.Enabled = false;     //<取消>不啟動
             init_Save_button.Enabled = false;    //<儲存>不啟動
-
-
+            init_Cancel_button.Visible = false;     //<取消>隱藏
+            init_Save_button.Visible = false;    //<儲存>隱藏
             #endregion
 
             #region 表身控制項<啟動>or<關閉>
@@ -337,8 +339,7 @@ namespace 財產管理系統
             #endregion
 
             #region other
-
-            fun.check_OK = false;            //check TexkBox全部有值就為True~不然就會false       
+            fun.check_OK = false;            //check TexkBox全部有值就為True~不然就會false
             tb_PDFPosition.ReadOnly = true;         //<PDF檔案位置>唯讀
             tb_PDFmodify_Position.ReadOnly = true;      //<修改記錄存檔位置>唯讀
             tb_PDFPosition_view.ReadOnly = true;         //<PDF檔案位置>唯讀
@@ -353,14 +354,12 @@ namespace 財產管理系統
             this.tb_PDFmodify_Position.AllowDrop = false;    //關閉<tb_PDFmodify_Position>拖移功能
             init_toolStripMAC.Visible = true;
             init_toolStrip_MAC_Value.Visible = true;
-            下拉選項設定ToolStripMenuItem.Visible = true;
-            廠商資料維護ToolStripMenuItem.Visible = true;
+            
             功能ToolStripMenuItem.Visible = true;
             功能ToolStripMenuItem.Enabled = true;
             
 
             #endregion
-
         }
 
         public void default_other_btn()     //其他-預設控制元件的初始狀態
@@ -443,15 +442,14 @@ namespace 財產管理系統
                 if (checkdata == "Y")
                 {
                     ck_Asset_CheckData_YES.Checked = true;
-                    ck_Asset_CheckData_NO.Checked = false;
-                    init_CheckData_button.Visible = false;
-                    
+                    ck_Asset_CheckData_NO.Checked = false;                    
+                    Login_check_ToF("Asset_CheckData", false, init_CheckData_button);      //核准-依登入的使用者設定button顯示狀態
                 }
                 else
                 {
                     ck_Asset_CheckData_YES.Checked = false;
                     ck_Asset_CheckData_NO.Checked = true;
-                    Login_check_bt();      //依登入的使用者設定button顯示狀態
+                    Login_check_ToF("Asset_CheckData", true, init_CheckData_button);      //核准-依登入的使用者設定button顯示狀態
                 }
                 
                 #endregion
@@ -524,6 +522,9 @@ namespace 財產管理系統
                 init_Modify_button.Enabled = false;   //<修改>不啟動
                 init_QueryAsset_button.Enabled = false;      //<查詢>不啟動
                 init_Del_button.Enabled = false;         //<刪除>不啟動
+
+                init_Cancel_button.Visible = true;     //<取消>顯示
+                init_Save_button.Visible = true;    //<儲存>顯示
                 init_Cancel_button.Enabled = true;     //<取消>啟動
                 init_Save_button.Enabled = true;    //<儲存>啟動
                 init_RetailData.Enabled = true;       //<廠商資料>按鈕關閉
@@ -556,10 +557,12 @@ namespace 財產管理系統
                 init_Add_button.Enabled = false;      //<新增>不啟動
                 init_Modify_button.Enabled = false;   //<修改>不啟動
                 init_QueryAsset_button.Enabled = false;      //<查詢>不啟動
-                init_Del_button.Enabled = false;         //<刪除>不啟動
-                init_Cancel_button.Enabled = true;     //<取消>啟動
-                init_Save_button.Enabled = true;       //<儲存>啟動
-                init_RetailData.Enabled = true;       //<廠商資料>啟動
+                init_Del_button.Enabled = false;        //<刪除>不啟動
+                init_Cancel_button.Visible = true;      //<取消>顯示
+                init_Save_button.Visible = true;        //<儲存>顯示
+                init_Cancel_button.Enabled = true;      //<取消>啟動
+                init_Save_button.Enabled = true;        //<儲存>啟動
+                init_RetailData.Enabled = true;         //<廠商資料>啟動
                 init_PDFbutton.Enabled = true;          //<檔案>啟動-PDF主檔
                 init_PDFmodify_button.Enabled = true;          //<檔案>啟動-修改記錄
                 btn_QueryEmpID.Enabled = true;          //<保管人員編查詢>啟動
@@ -580,13 +583,15 @@ namespace 財產管理系統
             else if (ss == init_QueryAsset_button)     //查詢
             {
                 #region 查詢
-                tb_Asset_ID.Text = "";                
+                tb_Asset_ID.Text = "";
                 init_Add_button.Enabled = false;
                 init_Modify_button.Enabled = false;
                 init_Del_button.Enabled = false;
                 tb_Asset_ID.ReadOnly = false;
                 init_QueryAsset_button.Enabled = false;
-                init_Cancel_button.Enabled = true;
+                init_Cancel_button.Visible = true;     //<取消>顯示
+                init_Save_button.Visible = false;    //<儲存>顯示
+                init_Cancel_button.Enabled = true;     //<取消>顯示
                 init_GenAssetCard.Enabled = false;     //<產生財產卡>按鈕關閉
                 fun.clearAir(init_tabPage1);           //清空Textbox及Combobox內容
                 fun.clearAir(panel1);                  //清空Textbox及Combobox內容
@@ -667,6 +672,16 @@ namespace 財產管理系統
                 default_other_btn();                
             }
 
+        }
+
+        private void 登出Button()         //登出
+        {
+            #region 內容
+            LOGIN_UI Login = new LOGIN_UI();
+            this.Hide();
+            Login.ShowDialog();
+            this.Close();
+            #endregion
         }
 
         public void File_SAccress_Get(string x,string y)            //取得檔案存放位置及傳送檔案
@@ -884,11 +899,31 @@ namespace 財產管理系統
             }
         }
 
-        public void Login_check_bt()        //依登入的使用者設定button顯示狀態
+        private void Login_check_init_CheckData_Button(bool x)        //核准-依登入的使用者設定button顯示狀態
         {
             DataView DViewLOGIN = new DataView(ADS.SLS_Asset_LOGIN);
-            DViewLOGIN.RowFilter = "Asset_CheckData = Y";
-            init_CheckData_button.Visible = DViewLOGIN.Count == 1 ? true /*<核准>打開*/ : false /*<核准>關閉*/;            
+            DViewLOGIN.RowFilter = "Asset_CheckData = 'Y'";
+            init_CheckData_button.Visible = DViewLOGIN.Count == 1 ? x /*<核准>打開*/ : false /*<核准>關閉*/;            
+        }
+
+        private void Login_check_ToF(string sx, bool y, System.Windows.Forms.Button Bonx)        //依登入的使用者設定button顯示狀態
+        {
+            //sx=>查詢條件(欄位)
+            //y =>true OR false(當查詢有資料時~Button是否要顯示)
+            //bonx =>設定button
+            DataView DViewLOGIN = new DataView(ADS.SLS_Asset_LOGIN);
+            DViewLOGIN.RowFilter = sx +" = 'Y'";
+            Bonx.Visible = DViewLOGIN.Count == 1 ? y /*<核准>打開*/ : false /*<核准>關閉*/;  
+        }
+
+        private void Login_check_ToF(string sx, bool y, System.Windows.Forms.ToolStripMenuItem Bonx)        //依登入的使用者設定ToolStripMenuItem顯示狀態
+        {
+            //sx=>查詢條件(欄位)
+            //y =>true OR false(當查詢有資料時~Button是否要顯示)
+            //bonx =>設定button
+            DataView DViewLOGIN = new DataView(ADS.SLS_Asset_LOGIN);
+            DViewLOGIN.RowFilter = sx + " = 'Y'";
+            Bonx.Visible = DViewLOGIN.Count == 1 ? y /*<核准>打開*/ : false /*<核准>關閉*/;
         }
 
         //======================================================================================
@@ -1072,10 +1107,7 @@ namespace 財產管理系統
 
         private void 登出ToolStripMenuItem_Click(object sender, EventArgs e)          //登出
         {
-            LoginA_main Login = new LoginA_main();
-            this.Hide();
-            Login.ShowDialog();
-            this.Close();
+            登出Button();         //登出            
         }
 
         private void init_GenAssetCard_Click(object sender, EventArgs e)            //產生財產卡
@@ -1270,8 +1302,7 @@ namespace 財產管理系統
             }
 
         }
-
-
+        
         public void refashDT(string x)
         {
             if (tb_OwnerID.Text != "")
@@ -1283,8 +1314,7 @@ namespace 財產管理系統
 
                 Get_SQL("查詢", x, null);    //語法丟進fun.Query_DB
                 fun.ProductDB_ds(fun.Query_DB);         //連接DB-執行DB指令
-                sub_();         //TestBOX與DB欄位的對應 
-                
+                sub_();         //TestBOX與DB欄位的對應
             }
 
         }
