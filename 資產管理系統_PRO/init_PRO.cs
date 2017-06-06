@@ -40,8 +40,7 @@ namespace 財產管理系統
         private void init_PRO_Load(object sender, EventArgs e)
         {
             init_sys_status.Text = "PRD";
-            default_status();
-            dataGridView5.DataSource = ADS.SLS_Asset_LOGIN;            
+            default_status();                      
             combobox_set();   //Combobox設定
             default_value(); //清空值
             fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value); //取得ip及mac位置

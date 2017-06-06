@@ -27,10 +27,10 @@
     <ErrorReportUrl>http://www.naturalbiokey.com</ErrorReportUrl>
     <ProductName>財產管理系統</ProductName>
     <PublisherName>SLS</PublisherName>
-    <MinimumRequiredVersion>1.0.10.51</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.10.52</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>52</ApplicationRevision>
+    <ApplicationRevision>53</ApplicationRevision>
     <ApplicationVersion>1.0.10.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
