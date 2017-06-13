@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(init_PRO));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_Asset_ID_input = new System.Windows.Forms.Button();
@@ -154,8 +154,6 @@
             this.檔案存放設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.init_statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.init_sys_status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.init_toolStripMAC = new System.Windows.Forms.ToolStripStatusLabel();
             this.init_toolStrip_MAC_Value = new System.Windows.Forms.ToolStripStatusLabel();
             this.init_IP = new System.Windows.Forms.ToolStripStatusLabel();
             this.init_toolStrip_IP_Value = new System.Windows.Forms.ToolStripStatusLabel();
@@ -1019,15 +1017,15 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1249, 619);
             this.dataGridView1.TabIndex = 0;
@@ -1049,15 +1047,15 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(1249, 619);
             this.dataGridView2.TabIndex = 0;
@@ -1079,15 +1077,15 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(3, 3);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.Size = new System.Drawing.Size(1249, 619);
             this.dataGridView3.TabIndex = 0;
@@ -1109,15 +1107,15 @@
             // 
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(3, 3);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dataGridView4.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dataGridView4.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(1249, 619);
             this.dataGridView4.TabIndex = 0;
@@ -1330,13 +1328,11 @@
             this.init_statusStrip1.BackColor = System.Drawing.Color.White;
             this.init_statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.init_sys_status,
-            this.toolStripStatusLabel1,
-            this.init_toolStripMAC,
-            this.init_toolStrip_MAC_Value,
+            this.init_UID,
+            this.init_toolStrip_UID_Value,
             this.init_IP,
             this.init_toolStrip_IP_Value,
-            this.init_UID,
-            this.init_toolStrip_UID_Value});
+            this.init_toolStrip_MAC_Value});
             this.init_statusStrip1.Location = new System.Drawing.Point(0, 831);
             this.init_statusStrip1.Name = "init_statusStrip1";
             this.init_statusStrip1.Size = new System.Drawing.Size(1287, 22);
@@ -1349,23 +1345,12 @@
             this.init_sys_status.Size = new System.Drawing.Size(38, 17);
             this.init_sys_status.Text = "PRD  ";
             // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(11, 17);
-            this.toolStripStatusLabel1.Text = "|";
-            // 
-            // init_toolStripMAC
-            // 
-            this.init_toolStripMAC.Name = "init_toolStripMAC";
-            this.init_toolStripMAC.Size = new System.Drawing.Size(45, 17);
-            this.init_toolStripMAC.Text = "MAC : ";
-            // 
             // init_toolStrip_MAC_Value
             // 
             this.init_toolStrip_MAC_Value.Name = "init_toolStrip_MAC_Value";
-            this.init_toolStrip_MAC_Value.Size = new System.Drawing.Size(112, 17);
-            this.init_toolStrip_MAC_Value.Text = "init_toolStrip_MAC";
+            this.init_toolStrip_MAC_Value.Size = new System.Drawing.Size(55, 17);
+            this.init_toolStrip_MAC_Value.Text = "MYMAC";
+            this.init_toolStrip_MAC_Value.Visible = false;
             // 
             // init_IP
             // 
@@ -1376,8 +1361,8 @@
             // init_toolStrip_IP_Value
             // 
             this.init_toolStrip_IP_Value.Name = "init_toolStrip_IP_Value";
-            this.init_toolStrip_IP_Value.Size = new System.Drawing.Size(131, 17);
-            this.init_toolStrip_IP_Value.Text = "init_toolStrip_IP_Value";
+            this.init_toolStrip_IP_Value.Size = new System.Drawing.Size(37, 17);
+            this.init_toolStrip_IP_Value.Text = "MYIP";
             // 
             // init_UID
             // 
@@ -1544,7 +1529,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.StatusStrip init_statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel init_toolStrip_MAC_Value;
-        private System.Windows.Forms.ToolStripStatusLabel init_toolStripMAC;
         private System.Windows.Forms.ToolStripStatusLabel init_IP;
         private System.Windows.Forms.ToolStripStatusLabel init_toolStrip_IP_Value;
         private System.Windows.Forms.TabPage init_tabPage4;
@@ -1560,7 +1544,6 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         public System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         internal System.Windows.Forms.ToolStripStatusLabel init_sys_status;
         private System.Windows.Forms.ToolStripStatusLabel init_UID;
         private System.Windows.Forms.ToolStripStatusLabel init_toolStrip_UID_Value;

@@ -2,8 +2,8 @@
     
     
     public partial class Asset_DS {
-        partial class SLS_Asset_LOGINDataTable
-        {
-        }
+        //partial class SLS_Asset_LOGINDataTable
+        //{
+        //}
     }
 }

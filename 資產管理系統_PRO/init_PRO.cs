@@ -30,7 +30,7 @@ namespace 財產管理系統
     public partial class init_PRO : Form
     {
         Asset_init_function fun = new Asset_init_function();
-        Asset_DS ADS = new Asset_DS();
+        Asset_DS AssetDS = new Asset_DS();
         
         public init_PRO()
         {
@@ -66,22 +66,24 @@ namespace 財產管理系統
             }
         }
 
-        public string Query_DB_AssetATR     //SQL語法變數
+        public Asset_DS MYDS         //DS
+        {
+            get
+            {
+                return AssetDS;
+            }
+        }
+
+        private string QueryDB          //SQL語法變數
         {
             set;
             get;
         }
 
-        public DataSet MYDS         //DS
+        public string Query_DB_AssetATR     //SQL語法變數
         {
-            set 
-            {
-                value = ADS;
-            }
-            get 
-            {
-                return ADS;
-            }
+            set;
+            get;
         }
 
         public string default_FileRoot
@@ -124,7 +126,35 @@ namespace 財產管理系統
         {
             set;
             get;
-        }        
+        }
+
+        private string Local_PCNAME          //取得本機電腦名稱
+        {
+            get
+            {
+                return Environment.MachineName;
+            }
+        }
+
+        private string Local_USERNAME        //取得登入win使用者名稱
+        {
+            get
+            {
+                return Environment.UserName;
+            }
+        }
+
+        public string Local_MYMAC             //取得本機MAC位置
+        {
+            set;
+            get;
+        }
+
+        public string Local_MYIP              //取得本機IP
+        {
+            set;
+            get;
+        }
 
         //======================================================================================
         #endregion
@@ -262,18 +292,21 @@ namespace 財產管理系統
             this.Text = SYS_TXT;
             init_toolStrip_UID_Value.Text = UID;
 
+            fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value);         //取得本機MAC及IP 
+            Login_log("登入成功");             //在DB記錄登入狀態
+
             #region panel元件<顯示>or<隱藏>
             init_panel.Visible = true;          //init_panel顯示
             init_DT_panel.Visible = false;      //init_DT_panel隱藏
             fun.Disabled_Panel_Tab(init_panel);         //關閉<init_panel>Tab
             fun.Disabled_Panel_Tab(seller_panel);       //關閉<seller_panel>Tab
             fun.Disabled_Panel_Tab(init_PDF_panel);     //關閉<init_PDF_panel>Tab
-            fun.Login_check_ToF("Asset_ADD", true, ADS.SLS_Asset_LOGIN, init_Add_button);        //<新增>-依登入的使用者設定button顯示狀態
-            fun.Login_check_ToF("Asset_Modify", true, ADS.SLS_Asset_LOGIN, init_Modify_button);  //<修改>-依登入的使用者設定button顯示狀態
-            fun.Login_check_ToF("Asset_Del", true, ADS.SLS_Asset_LOGIN, init_Del_button);        //<刪除>-依登入的使用者設定button顯示狀態
-            fun.Login_check_ToF("Asset_ADD", true, ADS.SLS_Asset_LOGIN, 廠商資料維護ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
-            fun.Login_check_ToF("Asset_ROOT", true, ADS.SLS_Asset_LOGIN, 下拉選項設定ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
-            fun.Login_check_ToF("Asset_ROOT", true, ADS.SLS_Asset_LOGIN, 系統設定ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
+            fun.Login_check_ToF("Asset_ADD", true, AssetDS.SLS_Asset_LOGIN, init_Add_button);        //<新增>-依登入的使用者設定button顯示狀態
+            fun.Login_check_ToF("Asset_Modify", true, AssetDS.SLS_Asset_LOGIN, init_Modify_button);  //<修改>-依登入的使用者設定button顯示狀態
+            fun.Login_check_ToF("Asset_Del", true, AssetDS.SLS_Asset_LOGIN, init_Del_button);        //<刪除>-依登入的使用者設定button顯示狀態
+            fun.Login_check_ToF("Asset_ADD", true, AssetDS.SLS_Asset_LOGIN, 廠商資料維護ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
+            fun.Login_check_ToF("Asset_ROOT", true, AssetDS.SLS_Asset_LOGIN, 下拉選項設定ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
+            fun.Login_check_ToF("Asset_ROOT", true, AssetDS.SLS_Asset_LOGIN, 系統設定ToolStripMenuItem);        //依登入的使用者設定ToolStripMenuItem顯示狀態
             #endregion
 
             #region 表頭控制項<啟動>or<關閉>
@@ -347,12 +380,10 @@ namespace 財產管理系統
             init_PDFmodify_button.Enabled = false;      //<檔案>關閉
             init_CheckData_button.Visible = false;      //<核准>關閉
             ck_Asset_CheckData_YES.Enabled = false;     //已審核=>唯讀
-            ck_Asset_CheckData_NO.Enabled = false;      //未審核=>唯讀
-           
+            ck_Asset_CheckData_NO.Enabled = false;      //未審核=>唯讀           
             this.tb_PDFPosition.AllowDrop = false;           //關閉<tb_PDFPosition>拖移功能
-            this.tb_PDFmodify_Position.AllowDrop = false;    //關閉<tb_PDFmodify_Position>拖移功能
-            init_toolStripMAC.Visible = true;
-            init_toolStrip_MAC_Value.Visible = true;
+            this.tb_PDFmodify_Position.AllowDrop = false;    //關閉<tb_PDFmodify_Position>拖移功能            
+            
             
             功能ToolStripMenuItem.Visible = true;
             功能ToolStripMenuItem.Enabled = true;
@@ -673,6 +704,20 @@ namespace 財產管理系統
 
         }
 
+        private void Login_log(string x)        //在DB記錄登入狀態
+        {
+            QueryDB = @"exec [TEST_SLSYHI].[dbo].[SLS_LOGIN_Log] '" + init_toolStrip_UID_Value.Text +     //帳號
+                        "','" + this.Text +         //使用程式
+                        "','" + x +                 //使用狀態
+                        "','***內網****" + init_toolStrip_IP_Value.Text.Substring(init_toolStrip_IP_Value.Text.Length - 4, 4) +          //使用者IP
+                        "','" +                          //使用者MAC
+                        "','" + init_sys_status.Text +    //SERVER_NAME
+                        "','" + Local_PCNAME +      //Client電腦名稱
+                        "','" + Local_USERNAME +     //Client登入使用者名稱;
+                        "'";
+            fun.DB_insert(QueryDB);
+        }
+
         private void 登出Button()         //登出
         {
             #region 內容
@@ -799,16 +844,14 @@ namespace 財產管理系統
                     {
                         系統設定ToolStripMenuItem.Visible = true;
                         系統設定ToolStripMenuItem.Enabled = true;
-                        //下拉選項設定ToolStripMenuItem.Visible = true;
-                        init_toolStripMAC.Visible = true;
+                        //下拉選項設定ToolStripMenuItem.Visible = true;                        
                         init_toolStrip_MAC_Value.Visible = true;
 
                     }
                     else
                     {
                         系統設定ToolStripMenuItem.Visible = false;
-                        //下拉選項設定ToolStripMenuItem.Visible = false;
-                        init_toolStripMAC.Visible = false;
+                        //下拉選項設定ToolStripMenuItem.Visible = false;                        
                         init_toolStrip_MAC_Value.Visible = false;
 
                     }
@@ -900,7 +943,7 @@ namespace 財產管理系統
 
         private void Login_check_init_CheckData_Button(bool x)        //核准-依登入的使用者設定button顯示狀態
         {
-            DataView DViewLOGIN = new DataView(ADS.SLS_Asset_LOGIN);
+            DataView DViewLOGIN = new DataView(AssetDS.SLS_Asset_LOGIN);
             DViewLOGIN.RowFilter = "Asset_CheckData = 'Y'";
             init_CheckData_button.Visible = DViewLOGIN.Count == 1 ? x /*<核准>打開*/ : false /*<核准>關閉*/;            
         }
@@ -910,7 +953,7 @@ namespace 財產管理系統
             //sx=>查詢條件(欄位)
             //y =>true OR false(當查詢有資料時~Button是否要顯示)
             //bonx =>設定button
-            DataView DViewLOGIN = new DataView(ADS.SLS_Asset_LOGIN);
+            DataView DViewLOGIN = new DataView(AssetDS.SLS_Asset_LOGIN);
             DViewLOGIN.RowFilter = sx +" = 'Y'";
             Bonx.Visible = DViewLOGIN.Count == 1 ? y /*<核准>打開*/ : false /*<核准>關閉*/;  
         }
@@ -920,7 +963,7 @@ namespace 財產管理系統
             //sx=>查詢條件(欄位)
             //y =>true OR false(當查詢有資料時~Button是否要顯示)
             //bonx =>設定button
-            DataView DViewLOGIN = new DataView(ADS.SLS_Asset_LOGIN);
+            DataView DViewLOGIN = new DataView(AssetDS.SLS_Asset_LOGIN);
             DViewLOGIN.RowFilter = sx + " = 'Y'";
             Bonx.Visible = DViewLOGIN.Count == 1 ? y /*<核准>打開*/ : false /*<核准>關閉*/;
         }
