@@ -30,6 +30,7 @@ namespace 財產管理系統
     public partial class init_PRO : Form
     {
         Asset_init_function fun = new Asset_init_function();
+        init_function initfun = new init_function();
         Asset_DS AssetDS = new Asset_DS();
         
         public init_PRO()
@@ -43,8 +44,7 @@ namespace 財產管理系統
             default_status();                      
             combobox_set();   //Combobox設定
             default_value(); //清空值
-            fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value); //取得ip及mac位置
-
+            SYS_log("登入成功");             //在DB記錄登入狀態
             #region 日期格式自訂
             this.DTP_Asset_TrDate.CustomFormat = "yyyy/MM/dd";
             this.DTP_Asset_TrDate.Format = DateTimePickerFormat.Custom;
@@ -289,11 +289,11 @@ namespace 財產管理系統
         public void default_status()  //預設控制元
         {
             //※在這個方法裡面不能使用fun.ProductDB_ds(fun.Query_DB)的方法※
+            //※SYS_log不能放在這※
             this.Text = SYS_TXT;
             init_toolStrip_UID_Value.Text = UID;
-
             fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value);         //取得本機MAC及IP 
-            Login_log("登入成功");             //在DB記錄登入狀態
+            
 
             #region panel元件<顯示>or<隱藏>
             init_panel.Visible = true;          //init_panel顯示
@@ -704,18 +704,20 @@ namespace 財產管理系統
 
         }
 
-        private void Login_log(string x)        //在DB記錄登入狀態
+        private void SYS_log(string x)        //在DB記錄登入狀態
         {
-            QueryDB = @"exec [TEST_SLSYHI].[dbo].[SLS_LOGIN_Log] '" + init_toolStrip_UID_Value.Text +     //帳號
-                        "','" + this.Text +         //使用程式
-                        "','" + x +                 //使用狀態
-                        "','***內網****" + init_toolStrip_IP_Value.Text.Substring(init_toolStrip_IP_Value.Text.Length - 4, 4) +          //使用者IP
-                        "','" +                          //使用者MAC
-                        "','" + init_sys_status.Text +    //SERVER_NAME
-                        "','" + Local_PCNAME +      //Client電腦名稱
-                        "','" + Local_USERNAME +     //Client登入使用者名稱;
-                        "'";
-            fun.DB_insert(QueryDB);
+            
+            int N = init_toolStrip_IP_Value.Text.LastIndexOf(".");
+            int Q = init_toolStrip_IP_Value.Text.Length;
+            initfun.Local_ID = init_toolStrip_UID_Value.Text;
+            initfun.Local_SYS = this.Text;
+            initfun.Local_PROC_NAME = x;
+            initfun.Local_MYIP = init_toolStrip_IP_Value.Text.Substring(N,Q-N);            
+            initfun.Local_MYMAC = "";
+            initfun.Local_HOST_NAME = init_sys_status.Text;
+            initfun.Local_PCNAME = Environment.MachineName;
+            initfun.Local_USERNAME = Environment.UserName;
+            initfun.Login_log();
         }
 
         private void 登出Button()         //登出
@@ -1055,6 +1057,7 @@ namespace 財產管理系統
                             File_SAccress_Get(Sys_AssetCard_Accress, Sys_Asset_ModifyInfo);                //檔案存放位置取得的方法                            
                             Get_SQL("新增-儲存", null, null);
                             fun.DB_PJ_insert(fun.Query_DB, null, "新增成功", SYS_TXT);
+                            SYS_log("新增");
                             default_value(); //清空值
                             default_status();  //預設值
                         }
