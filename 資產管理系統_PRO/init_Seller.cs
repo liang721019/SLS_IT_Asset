@@ -22,10 +22,93 @@ namespace 財產管理系統
             InitializeComponent();
             iPO = SS;
             fun.DoubleClick_Enable = KK;
-        }        
+        }
+
+        private void init_Seller_Load(object sender, EventArgs e)
+        {
+            default_status();
+            DGV1_View();        //把資料顯示到DGV1自定義欄位            
+
+        }
+
+        #region 變數
+        //***************************************************
+        public string ServiceName
+        {
+            set
+            {
+                 this.init_sys_status.Text = value;
+            }
+            get
+            {
+                return this.init_sys_status.Text;
+            }
+
+        }
+
+        public string USERID
+        {
+            set
+            {
+                this.init_toolStrip_UID_Value.Text = value;
+            }
+            get
+            {
+                return this.init_toolStrip_UID_Value.Text;
+            }
+        }
+
+        public bool DoubleClick_Enable  //設定init_Seller中dataGridView1_CellDoubleClick開關
+        {
+            set;
+            get;
+        }
+        //***************************************************
+        #endregion
 
         #region 方法
         //============================================================================================================
+
+        private void Get_SQL(Button x)
+        {
+            if (x == Seller_Query_button)           //<廠商查詢>
+            {
+                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'B','" + tb_retailNM.Text.Trim() + "'";
+            }
+            else if (x == Seller_AddNew_button)               //<廠商新增>
+            {
+                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_insert] '" +
+                                 tb_retailNM.Text.Trim() +                             //<廠商名稱>
+                                 @"','" + tb_retail_Contact_NM.Text.Trim() +          //<聯絡人>
+                                 @"','" + tb_retailSAPSN.Text.Trim() +                //<SAP編號>
+                                 @"','" + tb_retail_Phone.Text.Trim() +               //<廠商電話>
+                                 @"','" + tb_retailEmail.Text.Trim() +                //<EMAIL>
+                                 @"','" + tb_retailACC.Text.Trim() + @"'";            //<地址>
+
+            }
+            else if (x == Seller_Modify_button)               //<廠商修改>
+            {
+                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_updata] '" +
+                        tb_retail_ID.Text.Trim() +
+                        @"','" + tb_retailNM.Text.Trim() +
+                        @"','" + tb_retail_Contact_NM.Text.Trim() +
+                        @"','" + tb_retailSAPSN.Text.Trim() +
+                        @"','" + tb_retail_Phone.Text.Trim() +
+                        @"','" + tb_retailEmail.Text.Trim() +
+                        @"','" + tb_retailACC.Text.Trim() + @"'";
+
+
+            }
+            else if (x == Seller_Del_betton)                //<廠商刪除>
+            {
+
+            }
+            else if (x == Seller_Save_button)               //<廠商儲存>
+            {
+
+            }
+        }
+
         private void default_status()        //預設狀態
         {
             this.Text = "廠商資料維護表";
@@ -46,9 +129,8 @@ namespace 財產管理系統
             {
                 Seller_Import_button.Visible = false;
             }
-
-
         }
+
         private void start_status(Button btu)    //各按鈕影響資料的初始狀態
         {
             if (btu == Seller_AddNew_button)     //廠商新增
@@ -58,9 +140,7 @@ namespace 財產管理系統
                 fun.Enabled_Panel(panel1);
                 Seller_Cancel_button.Enabled = true;
                 Seller_Save_button.Enabled = true;
-                tb_retail_ID.ReadOnly = true;
-
-                
+                tb_retail_ID.ReadOnly = true;                
             }
             else if (btu == Seller_Modify_button)       //廠商修改
             {
@@ -93,7 +173,6 @@ namespace 財產管理系統
             {
                 default_status();
                 fun.clearAir(panel1);
-
             }
         }
 
@@ -135,53 +214,78 @@ namespace 財產管理系統
         //============================================================================================================
         #endregion
 
-        private void Get_SQL(Button x)
+        #region 事件
+        //***************************************************
+        private void tb_retailNM_KeyDown(object sender, KeyEventArgs e)     //廠商名稱~按下Enter要處理的事
         {
-            if (x == Seller_Query_button)           //<廠商查詢>
+            #region 內容
+            if (this.Text == "廠商資料維護表<查詢>")
             {
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'B','" + tb_retailNM.Text.Trim() + "'";
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Get_SQL(Seller_Query_button);
+                    fun.xxx_DB(fun.Query_DB, dataGridView1);
+                    default_status();
+                }
             }
-            else if (x == Seller_AddNew_button)               //<廠商新增>
-            {
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_insert] '" +
-                                 tb_retailNM.Text.Trim()+                             //<廠商名稱>
-                                 @"','" + tb_retail_Contact_NM.Text.Trim() +          //<聯絡人>
-                                 @"','" + tb_retailSAPSN.Text.Trim() +                //<SAP編號>
-                                 @"','" + tb_retail_Phone.Text.Trim() +               //<廠商電話>
-                                 @"','" + tb_retailEmail.Text.Trim() +                //<EMAIL>
-                                 @"','" + tb_retailACC.Text.Trim() + @"'";            //<地址>
+            #endregion
 
-            }
-            else if (x == Seller_Modify_button)               //<廠商修改>
-            {
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_updata] '"+
-                        tb_retail_ID.Text.Trim() +
-                        @"','" + tb_retailNM.Text.Trim()+
-                        @"','" + tb_retail_Contact_NM.Text.Trim()+
-                        @"','" + tb_retailSAPSN.Text.Trim() +
-                        @"','" + tb_retail_Phone.Text.Trim()+
-                        @"','" + tb_retailEmail.Text.Trim()+
-                        @"','" + tb_retailACC.Text.Trim() + @"'";
-               
-
-            }
-            else if (x == Seller_Del_betton)                //<廠商刪除>
-            {
-
-            }
-            else if (x == Seller_Save_button)               //<廠商儲存>
-            {
-
-            }
         }
 
-        private void init_Seller_Load(object sender, EventArgs e)
-        {                        
-            default_status();
-            DGV1_View();        //把資料顯示到DGV1自定義欄位            
-            
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)      //dataGridView1點二下要處理的事
+        {
+
+
+            if (fun.DoubleClick_Enable == true)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    string seller_ID = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                    fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'A','" + seller_ID + @"'";
+                    fun.ProductDB_ds(fun.Query_DB);
+                    iPO.tb_retail_ID.Text = fun.ds_index.Tables[0].Rows[0]["廠商編號"].ToString();
+                    iPO.tb_retailNM.Text = fun.ds_index.Tables[0].Rows[0]["廠商名稱"].ToString();
+                    iPO.tb_retail_Contact_NM.Text = fun.ds_index.Tables[0].Rows[0]["廠商聯絡人"].ToString();
+                    iPO.tb_retail_Phone.Text = fun.ds_index.Tables[0].Rows[0]["電話"].ToString();
+                    iPO.tb_retailEmail.Text = fun.ds_index.Tables[0].Rows[0]["EMAIL"].ToString();
+                    iPO.tb_retailACC.Text = fun.ds_index.Tables[0].Rows[0]["地址"].ToString();
+
+                    this.Close();
+
+                }
+            }
+
         }
 
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)      //dataGridView1點左鍵滑鼠事件
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    string seller_ID = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'C','" + seller_ID + @"'";
+                    fun.ProductDB_ds(fun.Query_DB);
+                    tb_retail_ID.Text = fun.ds_index.Tables[0].Rows[0]["廠商編號"].ToString();
+                    tb_retailNM.Text = fun.ds_index.Tables[0].Rows[0]["廠商名稱"].ToString();
+                    tb_retail_Contact_NM.Text = fun.ds_index.Tables[0].Rows[0]["廠商聯絡人"].ToString();
+                    tb_retail_Phone.Text = fun.ds_index.Tables[0].Rows[0]["電話"].ToString();
+                    tb_retailSAPSN.Text = fun.ds_index.Tables[0].Rows[0]["SAP編號"].ToString();
+                    tb_retailEmail.Text = fun.ds_index.Tables[0].Rows[0]["EMAIL"].ToString();
+                    tb_retailACC.Text = fun.ds_index.Tables[0].Rows[0]["地址"].ToString();
+                    default_status();
+
+                }
+            }
+
+        }
+
+        
+        //***************************************************
+        #endregion
+
+        #region button
+        //**********************************************************
         private void Seller_AddNew_button_Click(object sender, EventArgs e)     //新增
         {
             fun.clearAir(panel1);
@@ -192,7 +296,7 @@ namespace 財產管理系統
         {
             MessageBox.Show("沒有權限~~請連絡管理者", "警告!!");
 
-        }                
+        }
 
         private void Seller_Query_button_Click(object sender, EventArgs e)      //查詢
         {
@@ -252,29 +356,6 @@ namespace 財產管理系統
                             default_status();
 
                         }
-                        //{
-                        //    if (fun.ds_index.Tables[0].Rows[0]["廠商名稱"].ToString() != tb_retail_ID.Text)
-                        //    {
-                        //        MessageBox.Show("廠商名稱:" + tb_retailNM.Text.Trim() + "已存在!!!", "廠商資料");
-                        //    }
-                        //    else 
-                        //    {
-                        //        Get_SQL(Seller_Modify_button);
-                        //        fun.DB_PJ_insert(fun.Query_DB, null, "修改成功", "廠商資料");
-                        //        fun.clearAir(panel1);
-                        //        default_status();
-
-                        //    }
-                            
-                        //}
-                        //else
-                        //{
-                        //    Get_SQL(Seller_Modify_button);
-                        //    fun.DB_PJ_insert(fun.Query_DB, null, "修改成功", "廠商資料");
-                        //    fun.clearAir(panel1);
-                        //    default_status();
-                        //}
-                        
                     }
 
                     #endregion
@@ -297,76 +378,11 @@ namespace 財產管理系統
             }
         }
 
-        private void tb_retailNM_KeyDown(object sender, KeyEventArgs e)     //廠商名稱~按下Enter要處理的事
-        {
-            #region 內容
-            if (this.Text == "廠商資料維護表<查詢>")
-            {
-                if (e.KeyCode == Keys.Enter)
-                {                    
-                    Get_SQL(Seller_Query_button);
-                    fun.xxx_DB(fun.Query_DB, dataGridView1);                    
-                    default_status();
-                }
-            }
-            #endregion
-
-        }
-
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)      //dataGridView1點二下要處理的事
-        {
-
-
-            if (fun.DoubleClick_Enable == true)
-            {
-                if (e.RowIndex >= 0)
-                {
-                    string seller_ID = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                    fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'A','" + seller_ID + @"'";
-                    fun.ProductDB_ds(fun.Query_DB);
-                    iPO.tb_retail_ID.Text = fun.ds_index.Tables[0].Rows[0]["廠商編號"].ToString();
-                    iPO.tb_retailNM.Text = fun.ds_index.Tables[0].Rows[0]["廠商名稱"].ToString();
-                    iPO.tb_retail_Contact_NM.Text = fun.ds_index.Tables[0].Rows[0]["廠商聯絡人"].ToString();
-                    iPO.tb_retail_Phone.Text = fun.ds_index.Tables[0].Rows[0]["電話"].ToString();
-                    iPO.tb_retailEmail.Text = fun.ds_index.Tables[0].Rows[0]["EMAIL"].ToString();
-                    iPO.tb_retailACC.Text = fun.ds_index.Tables[0].Rows[0]["地址"].ToString();
-
-                    this.Close();
-                    
-                }
-            }           
-
-        }
-
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)      //dataGridView1點左鍵滑鼠事件
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                if (e.RowIndex >= 0)
-                {
-                    string seller_ID = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                    fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'C','" + seller_ID + @"'";
-                    fun.ProductDB_ds(fun.Query_DB);
-                    tb_retail_ID.Text = fun.ds_index.Tables[0].Rows[0]["廠商編號"].ToString();
-                    tb_retailNM.Text = fun.ds_index.Tables[0].Rows[0]["廠商名稱"].ToString();
-                    tb_retail_Contact_NM.Text = fun.ds_index.Tables[0].Rows[0]["廠商聯絡人"].ToString();
-                    tb_retail_Phone.Text = fun.ds_index.Tables[0].Rows[0]["電話"].ToString();
-                    tb_retailSAPSN.Text = fun.ds_index.Tables[0].Rows[0]["SAP編號"].ToString();
-                    tb_retailEmail.Text = fun.ds_index.Tables[0].Rows[0]["EMAIL"].ToString();
-                    tb_retailACC.Text = fun.ds_index.Tables[0].Rows[0]["地址"].ToString();
-                    default_status();
-
-                }
-            }
-
-        }
-
         private void Seller_Import_button_Click(object sender, EventArgs e)         //<導入資料>
         {
             #region 內容
             if (fun.DoubleClick_Enable == true)
             {
-
                 #region 內容
                 if (tb_retail_ID.Text != "")
                 {
@@ -382,12 +398,11 @@ namespace 財產管理系統
 
                     this.Close();
                 }
-                #endregion                
+                #endregion
             }
             #endregion
         }
-
-        
-        
+        //**********************************************************
+        #endregion        
     }
 }

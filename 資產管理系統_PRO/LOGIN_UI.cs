@@ -15,10 +15,7 @@ namespace 財產管理系統
 
         public override void V_login_SetENV()      //設定LOGIN變數
         {
-            base.V_login_SetENV();            
-            //Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_Login] '" +
-            //                        ID_Login +
-            //                        @"','" + App_LoginPW + "'";
+            base.V_login_SetENV();
             Query_DB = @"select * from [dbo].[SLS_Asset_LOGINTemp]('" + ID_Login + "','" + App_LoginPW + "')";
             LOD_DT = Asset_LOGIN_DT;
         }

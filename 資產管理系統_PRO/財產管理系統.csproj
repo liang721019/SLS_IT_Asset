@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\192.168.100.210\exe_update\Asset\PRDX86\</PublishUrl>
+    <PublishUrl>\\192.168.100.210\2900e\%40程式測試區\Asset\PRDX86\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,15 +23,16 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\192.168.100.210\exe_update\Asset\PRDX86\</InstallUrl>
+    <UpdateUrl>\\192.168.100.210\exe_update\Asset\PRDX86\</UpdateUrl>
     <SupportUrl>http://www.naturalbiokey.com</SupportUrl>
     <ErrorReportUrl>http://www.naturalbiokey.com</ErrorReportUrl>
     <ProductName>財產管理系統</ProductName>
     <PublisherName>SLS</PublisherName>
-    <MinimumRequiredVersion>1.0.10.54</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.10.60</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>55</ApplicationRevision>
-    <ApplicationVersion>1.0.10.%2a</ApplicationVersion>
+    <ApplicationRevision>60</ApplicationRevision>
+    <ApplicationVersion>1.0.10.60</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

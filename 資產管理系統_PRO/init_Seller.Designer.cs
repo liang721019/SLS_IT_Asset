@@ -62,10 +62,15 @@
             this.DGV1_Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DGV1_Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DGV1_Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.init_sys_status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.init_UID = new System.Windows.Forms.ToolStripStatusLabel();
+            this.init_toolStrip_UID_Value = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -107,7 +112,7 @@
             this.panel1.Location = new System.Drawing.Point(13, 15);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(472, 238);
+            this.panel1.Size = new System.Drawing.Size(517, 238);
             this.panel1.TabIndex = 2;
             // 
             // tb_retailSAPSN
@@ -235,18 +240,18 @@
             this.panel2.Controls.Add(this.Seller_Modify_button);
             this.panel2.Controls.Add(this.Seller_AddNew_button);
             this.panel2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.panel2.Location = new System.Drawing.Point(491, 15);
+            this.panel2.Location = new System.Drawing.Point(536, 15);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(301, 238);
+            this.panel2.Size = new System.Drawing.Size(302, 238);
             this.panel2.TabIndex = 4;
             // 
             // Seller_Import_button
             // 
-            this.Seller_Import_button.Location = new System.Drawing.Point(3, 177);
+            this.Seller_Import_button.Location = new System.Drawing.Point(3, 178);
             this.Seller_Import_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Seller_Import_button.Name = "Seller_Import_button";
-            this.Seller_Import_button.Size = new System.Drawing.Size(93, 34);
+            this.Seller_Import_button.Size = new System.Drawing.Size(93, 32);
             this.Seller_Import_button.TabIndex = 27;
             this.Seller_Import_button.Text = "導入資料";
             this.Seller_Import_button.UseVisualStyleBackColor = true;
@@ -317,7 +322,7 @@
             this.panel3.Location = new System.Drawing.Point(13, 260);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(779, 261);
+            this.panel3.Size = new System.Drawing.Size(825, 286);
             this.panel3.TabIndex = 5;
             // 
             // dataGridView1
@@ -343,7 +348,7 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.PaleTurquoise;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(779, 261);
+            this.dataGridView1.Size = new System.Drawing.Size(825, 286);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -393,12 +398,47 @@
             this.DGV1_Column7.ReadOnly = true;
             this.DGV1_Column7.Width = 150;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.init_sys_status,
+            this.init_UID,
+            this.init_toolStrip_UID_Value});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 550);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(851, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // init_sys_status
+            // 
+            this.init_sys_status.BackColor = System.Drawing.Color.Transparent;
+            this.init_sys_status.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.init_sys_status.Name = "init_sys_status";
+            this.init_sys_status.Size = new System.Drawing.Size(32, 17);
+            this.init_sys_status.Text = "PRD";
+            // 
+            // init_UID
+            // 
+            this.init_UID.BackColor = System.Drawing.Color.Transparent;
+            this.init_UID.Name = "init_UID";
+            this.init_UID.Size = new System.Drawing.Size(32, 17);
+            this.init_UID.Text = "UID:";
+            // 
+            // init_toolStrip_UID_Value
+            // 
+            this.init_toolStrip_UID_Value.BackColor = System.Drawing.Color.Transparent;
+            this.init_toolStrip_UID_Value.Name = "init_toolStrip_UID_Value";
+            this.init_toolStrip_UID_Value.Size = new System.Drawing.Size(142, 17);
+            this.init_toolStrip_UID_Value.Text = "init_toolStrip_UID_Value";
+            // 
             // init_Seller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(805, 536);
+            this.ClientSize = new System.Drawing.Size(851, 572);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -413,7 +453,10 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -451,5 +494,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DGV1_Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn DGV1_Column7;
         private System.Windows.Forms.Button Seller_Import_button;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel init_sys_status;
+        private System.Windows.Forms.ToolStripStatusLabel init_UID;
+        private System.Windows.Forms.ToolStripStatusLabel init_toolStrip_UID_Value;
     }
 }

@@ -18,8 +18,10 @@ using function.lib;
  * @author                  :ericchen
  * @version                 :1.0
  * @Creation                :2016/10/6
- * @Modify                  :2017/05/11
+ * @Modify                  :2017/06/14
  * ****************************************************************************************
+ * 2017/06/14  :@增加財產卡對應的欄位(請購單號、購置日期、規格型式)
+ * 2017/06/13  :@增加登入系統記錄
  * 2017/06/05  :@修改LOGIN程式
  * 2017/05/11  :@新增檔案選取-word檔
  * 2017/05/11  :@當按<取消>後-不會清除tb_PDFPosition中的文字 
@@ -39,12 +41,11 @@ namespace 財產管理系統
         }
 
         private void init_PRO_Load(object sender, EventArgs e)
-        {
-            init_sys_status.Text = "PRD";
+        {            
             default_status();                      
             combobox_set();   //Combobox設定
             default_value(); //清空值
-            SYS_log("登入成功");             //在DB記錄登入狀態
+            SYS_log("登入成功");             //在DB記錄登入狀態            
             #region 日期格式自訂
             this.DTP_Asset_TrDate.CustomFormat = "yyyy/MM/dd";
             this.DTP_Asset_TrDate.Format = DateTimePickerFormat.Custom;
@@ -167,28 +168,28 @@ namespace 財產管理系統
             if (xQL == "查詢")
             {
                 #region <查詢>SQL語法
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_Query] '" + Q_value + "'";
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_Query] '" + Q_value + "'";
 
                 #endregion
             }
             else if (xQL == "保管人所有資產")
             {
                 #region <保管人所有資產>SQL語法
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_Owner_QueryAll] '" + Q_value + "'";
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_Owner_QueryAll] '" + Q_value + "'";
 
                 #endregion
             }
             else if (xQL == "資產異動紀錄")
             {
                 #region <資產異動紀錄>SQL語法
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_ModifyQuery] '" + Q_value + "'";
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_ModifyQuery] '" + Q_value + "'";
 
                 #endregion
             }
             else if (xQL == "新增-儲存")
             {
                 #region <新增>SQL語法
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_insert]                                  
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_insert]                                  
 	                                     '" + tb_Asset_ID.Text.Trim().ToUpper() +             //資產編號         
                                          @"','" + tb_Asset_NM.Text.Trim() +           //資產名稱
                                          @"','" + cb_AssetATR.Text.Trim() +           //屬性
@@ -227,7 +228,7 @@ namespace 財產管理系統
                 #region <修改>SQL語法
 
 
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_Update] 
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_Update] 
                                   '" + tb_Asset_ID.Text.Trim().ToUpper() +                  //資產ID
                                  "','" + tb_Asset_NM.Text.Trim() +                //資產名稱
                                  "','" + cb_AssetATR.Text.Trim() +                  //屬性
@@ -261,12 +262,12 @@ namespace 財產管理系統
             }
             else if (xQL == "保管人資產統計")
             {
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_QtyQuery] '" + Q_value + "'";
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_QtyQuery] '" + Q_value + "'";
 
             }
             else if (xQL == "審核資料")
             {
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_Update_CheckData] '" + tb_Asset_ID.Text.Trim() + "','" + init_toolStrip_UID_Value.Text + "'";
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_Update_CheckData] '" + tb_Asset_ID.Text.Trim() + "','" + init_toolStrip_UID_Value.Text + "'";
             }
             else if (xQL == "其他查詢")
             {
@@ -279,7 +280,7 @@ namespace 財產管理系統
 		                             ,[Dept]		AS 員工部門
 		                             ,[ASSET_CheckData] AS 審核資料
                                      ,[ASSET_CKID]  AS 審核人員
-                                from [TEST_SLSYHI].[dbo].[SLS_Asset_View]()
+                                from [dbo].[SLS_Asset_View]()
                                 where [Asset_ID] is not null ";
                 #endregion
             }
@@ -292,8 +293,7 @@ namespace 財產管理系統
             //※SYS_log不能放在這※
             this.Text = SYS_TXT;
             init_toolStrip_UID_Value.Text = UID;
-            fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value);         //取得本機MAC及IP 
-            
+            fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value);         //取得本機MAC及IP
 
             #region panel元件<顯示>or<隱藏>
             init_panel.Visible = true;          //init_panel顯示
@@ -405,7 +405,7 @@ namespace 財產管理系統
         }
 
         public void default_value()  //預設Textbox清空
-        {
+        {            
             #region 表頭控制項<值>清空
             //================================================================
             #region panel1清空
@@ -427,7 +427,6 @@ namespace 財產管理系統
             fun.clearAir(init_PDF_panel);
             
             #endregion
-
         }
 
         public void sub_()  //TestBOX與DB欄位的對應
@@ -720,7 +719,7 @@ namespace 財產管理系統
             initfun.Login_log();
         }
 
-        private void 登出Button()         //登出
+        private void 登出Button()             //登出
         {
             #region 內容
             LOGIN_UI Login = new LOGIN_UI();
@@ -730,30 +729,32 @@ namespace 財產管理系統
             #endregion
         }
 
-        public void File_SAccress_Get(string x,string y)            //取得檔案存放位置及傳送檔案
+        public void File_SAccress_Get()            //取得檔案存放位置及傳送檔案
         {
             string GetDB_DTime = @"SELECT CONVERT(nvarchar(6), getdate(), 12)+replace(CONVERT(nvarchar(6),GETDATE(),108),':','') AS NO";
             fun.ProductDB_ds(GetDB_DTime);
             string GetDB_DTime_Value = fun.ds_index.Tables[0].Rows[0]["NO"].ToString();
 
             #region 系統狀態
+            //Sys_AssetCard_Accress =x
+            //Sys_Asset_ModifyInfo =y
             if (init_sys_status.Text == "PRD")
             {
                 fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = '001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
-                x = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\"+ tb_Asset_ID.Text.ToUpper();
+                Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
                 fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = '002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
-                y = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper(); 
+                Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper(); 
             }
             else if (init_sys_status.Text == "QAS")
             {
                 fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'QAS001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
-                x = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper(); ;
+                Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper(); ;
                 fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'QAS002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
-                y = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
+                Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
                 
 
             }
@@ -761,10 +762,10 @@ namespace 財產管理系統
             {
                 fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'DEV001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
-                x = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
+                Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
                 fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'DEV002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
-                y = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
+                Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
 
             }
             #endregion
@@ -773,7 +774,7 @@ namespace 財產管理系統
             if (tb_PDFPosition.Text != "")      //<資產主檔>
             {
                 fun.SAUkey_tb_PDFPosition = tb_Asset_ID.Text.ToUpper() + "-" + Path.GetFileName(tb_PDFPosition.Text);
-                fun.File_UAccress(tb_PDFPosition.Text, x, tb_Asset_ID.Text, "《資產主檔》", null,null); //<資產主檔>檔案傳送到預設位置
+                fun.File_UAccress(tb_PDFPosition.Text, Sys_AssetCard_Accress, tb_Asset_ID.Text, "《資產主檔》", null, null); //<資產主檔>檔案傳送到預設位置
 
             }
             else
@@ -783,8 +784,8 @@ namespace 財產管理系統
 
             if (tb_PDFmodify_Position.Text != "")       //<異動記錄>
             {
-                fun.SAUkey_tb_PDFmodify_Position = tb_Asset_ID.Text.ToUpper() + "-" + tb_OwnerID.Text + Path.GetFileNameWithoutExtension(tb_PDFmodify_Position.Text) + "_" + GetDB_DTime_Value + Path.GetExtension(tb_PDFmodify_Position.Text) ;
-                fun.File_UAccress(tb_PDFmodify_Position.Text, y, tb_Asset_ID.Text, "《異動記錄》", tb_OwnerID.Text , GetDB_DTime_Value );//<異動記錄>檔案傳送到預設位置
+                fun.SAUkey_tb_PDFmodify_Position = tb_OwnerID.Text + Path.GetFileNameWithoutExtension(tb_PDFmodify_Position.Text) + "_" + GetDB_DTime_Value + Path.GetExtension(tb_PDFmodify_Position.Text) ;
+                fun.File_UAccress(tb_PDFmodify_Position.Text, Sys_Asset_ModifyInfo, tb_Asset_ID.Text, "《異動記錄》", tb_OwnerID.Text, GetDB_DTime_Value);//<異動記錄>檔案傳送到預設位置
             }
             else
             {
@@ -826,56 +827,6 @@ namespace 財產管理系統
 
             }
             #endregion
-        }
-
-        public void SYS_Status_Key_MAC()            //用MAC位址判斷是否能使用本系統
-        {
-            #region 判斷是否能使用本系統
-            fun.Query_DB = @"SELECT [MAC_EID] AS 員工編號 FROM [TEST_SLSYHI].[dbo].[SLS_AssetMAC] where [MAC_address] = '" + init_toolStrip_MAC_Value.Text + "'";
-            fun.ProductDB_ds(fun.Query_DB);
-            if (fun.ds_index.Tables[0].Rows.Count != 0)
-            {
-                init_toolStrip_UID_Value.Text = fun.ds_index.Tables[0].Rows[0]["員工編號"].ToString();
-                fun.check_Login(init_toolStrip_MAC_Value.Text);         //確認是否能使用本系統
-                #region 確認是否有管理者的權限
-                if (fun.check_MAC_OK)
-                {
-                    #region 內容-確認是否有管理者的權限
-                    fun.check_MAC(init_toolStrip_MAC_Value.Text);           //確認是否有管理者的權限
-                    if (fun.check_MAC_OK)
-                    {
-                        系統設定ToolStripMenuItem.Visible = true;
-                        系統設定ToolStripMenuItem.Enabled = true;
-                        //下拉選項設定ToolStripMenuItem.Visible = true;                        
-                        init_toolStrip_MAC_Value.Visible = true;
-
-                    }
-                    else
-                    {
-                        系統設定ToolStripMenuItem.Visible = false;
-                        //下拉選項設定ToolStripMenuItem.Visible = false;                        
-                        init_toolStrip_MAC_Value.Visible = false;
-
-                    }
-                    #endregion
-
-                }
-                else
-                {
-                    MessageBox.Show("無權限使用系統!!請跟管理員申請!!", SYS_TXT);
-                    this.Close();
-
-                }
-
-                #endregion
-            }
-            else
-            {
-                MessageBox.Show("無權限使用系統!!請跟管理員申請!!", SYS_TXT);
-                this.Close();
-            }
-            #endregion
-
         }
 
         public void Other_QueryCondition()          //其他查詢條件
@@ -929,7 +880,7 @@ namespace 財產管理系統
 
         public void SYS_系統設定ToolStripMenuItem_Status_Key()      //判斷是否顯示<系統設定ToolStripMenuItem>
         {
-            fun.Query_DB = @"SELECT [DMS_ROOT] FROM [TEST_SLSYHI].[dbo].[SLS_Employees] where [EMP_ID] = '" + init_toolStrip_UID_Value.Text + "' and [Asset_ROOT] = 'Y'";
+            fun.Query_DB = @"SELECT [DMS_ROOT] FROM [dbo].[SLS_Employees] where [EMP_ID] = '" + init_toolStrip_UID_Value.Text + "' and [Asset_ROOT] = 'Y'";
             fun.ProductDB_ds(fun.Query_DB);
             if (fun.ds_index.Tables[0].Rows.Count == 0)
             {
@@ -968,6 +919,21 @@ namespace 財產管理系統
             DataView DViewLOGIN = new DataView(AssetDS.SLS_Asset_LOGIN);
             DViewLOGIN.RowFilter = sx + " = 'Y'";
             Bonx.Visible = DViewLOGIN.Count == 1 ? y /*<核准>打開*/ : false /*<核准>關閉*/;
+        }
+
+        private void 廠商資料維護_FUN(bool x)
+        {
+            #region 內容
+            //fun.DoubleClick_Enable = false;
+            init_Seller inSea = new init_Seller(this, x);
+            //設定init_Staff 新視窗的相對位置#############
+            inSea.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            //############################################
+            //inSea.DoubleClick_Enable = false;
+            inSea.ServiceName = this.init_sys_status.Text;
+            inSea.USERID = this.init_toolStrip_UID_Value.Text;
+            inSea.ShowDialog();
+            #endregion
         }
 
         //======================================================================================
@@ -1054,10 +1020,11 @@ namespace 財產管理系統
                         check_key();                //check TextBox是否有填入值
                         if (fun.check_OK == true)
                         {
-                            File_SAccress_Get(Sys_AssetCard_Accress, Sys_Asset_ModifyInfo);                //檔案存放位置取得的方法                            
+                            //File_SAccress_Get(Sys_AssetCard_Accress, Sys_Asset_ModifyInfo);                //檔案存放位置取得的方法                            
+                            File_SAccress_Get();                //檔案存放位置取得的方法 
                             Get_SQL("新增-儲存", null, null);
                             fun.DB_PJ_insert(fun.Query_DB, null, "新增成功", SYS_TXT);
-                            SYS_log("新增");
+                            //SYS_log("新增");
                             default_value(); //清空值
                             default_status();  //預設值
                         }
@@ -1076,7 +1043,8 @@ namespace 財產管理系統
                     check_key();                //check TexkBox是否有填入值
                     if (fun.check_OK == true)
                     {
-                        File_SAccress_Get(Sys_AssetCard_Accress, Sys_Asset_ModifyInfo);                //檔案存放位置取得的方法                        
+                        //File_SAccress_Get(Sys_AssetCard_Accress, Sys_Asset_ModifyInfo);                //檔案存放位置取得的方法
+                        File_SAccress_Get();            //檔案存放位置取得的方法
                         Get_SQL("修改-儲存", null, null);
                         fun.DB_PJ_insert(fun.Query_DB, null, "修改成功", SYS_TXT);
                         default_value(); //清空值
@@ -1101,14 +1069,8 @@ namespace 財產管理系統
         }
 
         private void init_RetailData_Click(object sender, EventArgs e)      //廠商資料
-        {    
-            fun.DoubleClick_Enable = true;              
-            init_Seller inSe = new init_Seller(this,true);            
-            //設定init_Staff 新視窗的相對位置#############
-            inSe.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            //############################################
-            inSe.ShowDialog();
-
+        { 
+            廠商資料維護_FUN(true);
         }
 
         private void btn_Asset_ID_input_Click(object sender, EventArgs e)           //<導入財產編號>的按鈕
@@ -1122,13 +1084,7 @@ namespace 財產管理系統
 
         private void 廠商資料維護ToolStripMenuItem_Click(object sender, EventArgs e)     //廠商資料維護按鈕
         {
-            fun.DoubleClick_Enable = false;
-            init_Seller inSea = new init_Seller(this, false);
-            //設定init_Staff 新視窗的相對位置#############
-            inSea.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            //############################################
-            inSea.ShowDialog();
-
+            廠商資料維護_FUN(false);
         }
 
         private void 下拉選項設定ToolStripMenuItem_Click(object sender, EventArgs e)          //下拉選項設定
@@ -1159,30 +1115,30 @@ namespace 財產管理系統
         {
             try
             {
-                // 讀取檔案 (*.docx)
-                string Docx_acc = @"\\192.168.100.210\exe_update\Asset\PRD\財產卡_空白.docx";
+                // 讀取檔案 (*.docx)               
+                string Docx_acc = @"\\192.168.100.210\exe_update\Asset\PRDX86\財產卡_空白.docx";
                 DocX WDocument = DocX.Load(Docx_acc);
-
                 SaveFileDialog sfd = new SaveFileDialog(); //通過SaveFileDialog類彈出一個保存對話方塊
                 sfd.Filter = "Word 文件|*.docx";
                 sfd.FileName = DateTime.Now.ToString("yyyyMMddhhmmss"); //預設檔案名稱 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     string filename = sfd.FileName;
-
                     // 取代
                     WDocument.ReplaceText("[$Asset_ID$]", tb_Asset_ID.Text, false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$Asset_NM$]", tb_Asset_NM.Text, false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$AssetATR$]", cb_AssetATR.Text, false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$Asset_ExpDT$]", tb_Asset_ExpDT.Text, false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$Asset_Cost$]", tb_Asset_Cost.Text, false, System.Text.RegularExpressions.RegexOptions.None);
-                    WDocument.ReplaceText("[$Asset_Spec$]", tb_Asset_Spec.Text.Replace(" ", "").Replace("\r\n", "　"), false, System.Text.RegularExpressions.RegexOptions.None);
+                    //WDocument.ReplaceText("[$Asset_Spec$]", tb_Asset_Spec.Text.Replace(" ", "").Replace("\r\n", "　"), false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$Asset_Brand$]", tb_Asset_Brand.Text, false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$retailNM$]", tb_retailNM.Text, false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$retail_Contact_NM$]", tb_retail_Contact_NM.Text, false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$retail_Phone$]", tb_retail_Phone.Text, false, System.Text.RegularExpressions.RegexOptions.None);
                     WDocument.ReplaceText("[$tb_retailACC$]", tb_retailACC.Text, false, System.Text.RegularExpressions.RegexOptions.None);
-
+                    WDocument.ReplaceText("[$tb_Asset_MD$]", tb_Asset_MD.Text, false, System.Text.RegularExpressions.RegexOptions.None);
+                    WDocument.ReplaceText("[$tb_PR_NO$]", tb_PR_NO.Text, false, System.Text.RegularExpressions.RegexOptions.None);
+                    WDocument.ReplaceText("[$Asset_GetDate$]", tb_Asset_GetDate.Text, false, System.Text.RegularExpressions.RegexOptions.None);
 
                     // 儲存檔案
                     WDocument.SaveAs(filename);
@@ -1192,11 +1148,8 @@ namespace 財產管理系統
             }
             catch (Exception x)
             {
-                System.Windows.Forms.MessageBox.Show(x.Message);
+                MessageBox.Show(x.Message);
             }
-
-
-
         }
 
         private void init_CheckData_button_Click(object sender, EventArgs e)            //核准
@@ -1235,7 +1188,6 @@ namespace 財產管理系統
                         Get_SQL("保管人所有資產", tb_OwnerID.Text, null);
                         fun.xxx_DB(fun.Query_DB, this.dataGridView3);
                     }
-
                 }
             }
             else if (init_tabControl.SelectedIndex == 4)
@@ -1262,7 +1214,6 @@ namespace 財產管理系統
                     tb_Asset_NM.Text = "";
                     cb_StoredLoc.SelectedIndex = -1;
                     default_value();  //預設Textbox清空
-
                 }
                 #region 依目前的分項-清除dataGridView的內容
                 if (init_tabControl.SelectedIndex == 2)
@@ -1302,7 +1253,28 @@ namespace 財產管理系統
         private void init_PDFmodify_button_Click(object sender, EventArgs e)        //PDF-修改記錄
         {
             fun.MYPDF(null, tb_PDFmodify_Position);
+        }        
+        
+        public void refashDT(string x)
+        {
+            if (tb_OwnerID.Text != "")
+            {
+                Get_SQL("資產異動紀錄", tb_Asset_ID.Text, null);
+                fun.xxx_DB(fun.Query_DB, this.dataGridView1);
+                Get_SQL("保管人所有資產", tb_OwnerID.Text, null);
+                fun.xxx_DB(fun.Query_DB, this.dataGridView3);
+
+                Get_SQL("查詢", x, null);    //語法丟進fun.Query_DB
+                fun.ProductDB_ds(fun.Query_DB);         //連接DB-執行DB指令
+                sub_();         //TestBOX與DB欄位的對應
+            }
+
         }
+
+        //==============================================================================================================
+        #endregion
+
+        #region 事件
 
         private void tb_PDFPosition_view_DoubleClick(object sender, EventArgs e)        //財產卡檔名DoubleClick事件
         {
@@ -1347,27 +1319,6 @@ namespace 財產管理系統
             }
 
         }
-        
-        public void refashDT(string x)
-        {
-            if (tb_OwnerID.Text != "")
-            {
-                Get_SQL("資產異動紀錄", tb_Asset_ID.Text, null);
-                fun.xxx_DB(fun.Query_DB, this.dataGridView1);
-                Get_SQL("保管人所有資產", tb_OwnerID.Text, null);
-                fun.xxx_DB(fun.Query_DB, this.dataGridView3);
-
-                Get_SQL("查詢", x, null);    //語法丟進fun.Query_DB
-                fun.ProductDB_ds(fun.Query_DB);         //連接DB-執行DB指令
-                sub_();         //TestBOX與DB欄位的對應
-            }
-
-        }
-
-        //==============================================================================================================
-        #endregion
-
-        #region 事件
 
         private void tb_Asset_ID_KeyDown(object sender, KeyEventArgs e)  //資產編號按Enter要處理的事
         {            
@@ -1733,11 +1684,7 @@ namespace 財產管理系統
             tb_Asset_GetDate.Text = dTP_Asset_GetDate_input.Text;
         }
         
-
         //================================================================================================================
         #endregion
-
-        
-
     }
 }
