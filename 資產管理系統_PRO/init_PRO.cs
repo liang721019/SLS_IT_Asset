@@ -1143,7 +1143,7 @@ namespace 財產管理系統
                     // 儲存檔案
                     WDocument.SaveAs(filename);
                     //wordDocument.SaveAs(@"D:\liang\資產管理系統資料\財產卡123.docx");        //存放到指定位置
-                    MessageBox.Show("財產卡產生成功~", SYS_TXT);
+                    MessageBox.Show("財產卡產生成功!", SYS_TXT);
                 }
             }
             catch (Exception x)

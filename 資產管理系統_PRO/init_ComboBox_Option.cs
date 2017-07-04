@@ -21,7 +21,7 @@ namespace 財產管理系統
 
         Asset_init_function fun = new Asset_init_function();
 
-        #region 變數        
+        #region 變數
         public string Co_SN_ID      //新增用變數
         {
             set;
