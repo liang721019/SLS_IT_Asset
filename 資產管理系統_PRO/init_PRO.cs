@@ -33,7 +33,7 @@ namespace 財產管理系統
     {
         Asset_init_function fun = new Asset_init_function();
         init_function initfun = new init_function();
-        Asset_DS AssetDS = new Asset_DS();
+        Asset_DS AssetDS = new Asset_DS();        
         
         public init_PRO()
         {
@@ -81,7 +81,7 @@ namespace 財產管理系統
             get;
         }
 
-        public string Query_DB_AssetATR     //SQL語法變數
+        private string Query_DB_AssetATR     //SQL語法變數
         {
             set;
             get;
@@ -292,6 +292,7 @@ namespace 財產管理系統
             //※在這個方法裡面不能使用fun.ProductDB_ds(fun.Query_DB)的方法※
             //※SYS_log不能放在這※
             this.Text = SYS_TXT;
+            
             init_toolStrip_UID_Value.Text = UID;
             fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value);         //取得本機MAC及IP
 
@@ -1119,8 +1120,9 @@ namespace 財產管理系統
                 string Docx_acc = @"\\192.168.100.210\exe_update\Asset\PRDX86\財產卡_空白.docx";
                 DocX WDocument = DocX.Load(Docx_acc);
                 SaveFileDialog sfd = new SaveFileDialog(); //通過SaveFileDialog類彈出一個保存對話方塊
-                sfd.Filter = "Word 文件|*.docx";
-                sfd.FileName = DateTime.Now.ToString("yyyyMMddhhmmss"); //預設檔案名稱 
+                sfd.Filter = "Word 文件|*.docx";                
+                sfd.FileName = tb_Asset_ID.Text.Trim();
+                //sfd.FileName = DateTime.Now.ToString("yyyyMMddhhmmss"); //預設檔案名稱 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     string filename = sfd.FileName;

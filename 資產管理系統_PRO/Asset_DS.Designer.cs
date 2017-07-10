@@ -301,10 +301,6 @@ namespace 財產管理系統 {
             
             private global::System.Data.DataColumn columnDel_Flag;
             
-            private global::System.Data.DataColumn columnCreate_Date;
-            
-            private global::System.Data.DataColumn columnCreate_Time;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SLS_Asset_LOGINDataTable() {
@@ -428,22 +424,6 @@ namespace 財產管理系統 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Create_DateColumn {
-                get {
-                    return this.columnCreate_Date;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Create_TimeColumn {
-                get {
-                    return this.columnCreate_Time;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -479,7 +459,7 @@ namespace 財產管理系統 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SLS_Asset_LOGINRow AddSLS_Asset_LOGINRow(string EMP_ID, string EMP_Name, string Asset_Login, string Asset_ROOT, string Asset_ADD, string Asset_Modify, string Asset_Del, string Asset_Query, string Asset_Other, string Asset_CheckData, string Del_Flag, string Create_Date, string Create_Time) {
+            public SLS_Asset_LOGINRow AddSLS_Asset_LOGINRow(string EMP_ID, string EMP_Name, string Asset_Login, string Asset_ROOT, string Asset_ADD, string Asset_Modify, string Asset_Del, string Asset_Query, string Asset_Other, string Asset_CheckData, string Del_Flag) {
                 SLS_Asset_LOGINRow rowSLS_Asset_LOGINRow = ((SLS_Asset_LOGINRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         EMP_ID,
@@ -492,9 +472,7 @@ namespace 財產管理系統 {
                         Asset_Query,
                         Asset_Other,
                         Asset_CheckData,
-                        Del_Flag,
-                        Create_Date,
-                        Create_Time};
+                        Del_Flag};
                 rowSLS_Asset_LOGINRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSLS_Asset_LOGINRow);
                 return rowSLS_Asset_LOGINRow;
@@ -528,8 +506,6 @@ namespace 財產管理系統 {
                 this.columnAsset_Other = base.Columns["Asset_Other"];
                 this.columnAsset_CheckData = base.Columns["Asset_CheckData"];
                 this.columnDel_Flag = base.Columns["Del_Flag"];
-                this.columnCreate_Date = base.Columns["Create_Date"];
-                this.columnCreate_Time = base.Columns["Create_Time"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -557,10 +533,6 @@ namespace 財產管理系統 {
                 base.Columns.Add(this.columnAsset_CheckData);
                 this.columnDel_Flag = new global::System.Data.DataColumn("Del_Flag", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDel_Flag);
-                this.columnCreate_Date = new global::System.Data.DataColumn("Create_Date", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCreate_Date);
-                this.columnCreate_Time = new global::System.Data.DataColumn("Create_Time", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCreate_Time);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -879,38 +851,6 @@ namespace 財產管理系統 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Create_Date {
-                get {
-                    try {
-                        return ((string)(this[this.tableSLS_Asset_LOGIN.Create_DateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("資料表 \'SLS_Asset_LOGIN\' 中資料行 \'Create_Date\' 的值是 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSLS_Asset_LOGIN.Create_DateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Create_Time {
-                get {
-                    try {
-                        return ((string)(this[this.tableSLS_Asset_LOGIN.Create_TimeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("資料表 \'SLS_Asset_LOGIN\' 中資料行 \'Create_Time\' 的值是 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSLS_Asset_LOGIN.Create_TimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsEMP_IDNull() {
                 return this.IsNull(this.tableSLS_Asset_LOGIN.EMP_IDColumn);
             }
@@ -1039,30 +979,6 @@ namespace 財產管理系統 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDel_FlagNull() {
                 this[this.tableSLS_Asset_LOGIN.Del_FlagColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCreate_DateNull() {
-                return this.IsNull(this.tableSLS_Asset_LOGIN.Create_DateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCreate_DateNull() {
-                this[this.tableSLS_Asset_LOGIN.Create_DateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCreate_TimeNull() {
-                return this.IsNull(this.tableSLS_Asset_LOGIN.Create_TimeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCreate_TimeNull() {
-                this[this.tableSLS_Asset_LOGIN.Create_TimeColumn] = global::System.Convert.DBNull;
             }
         }
         
