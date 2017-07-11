@@ -112,6 +112,7 @@ namespace 財產管理系統
         private void default_status()        //預設狀態
         {
             this.Text = "廠商資料維護表";
+            fun.ServiceName = init_sys_status.Text;     //設定DB連線伺服器名稱
             fun.Disabled_Panel(panel1);
             fun.Enabled_Panel_btn(panel2);
             Seller_Save_button.Enabled = false;

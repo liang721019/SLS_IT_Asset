@@ -295,8 +295,8 @@ namespace 財產管理系統
             
             init_toolStrip_UID_Value.Text = UID;
             init_sys_status.Text = Service_ENV;             //取得DB連線名稱
-            fun.ServiceName = init_sys_status.Text.Trim();           //設定DB連線服務器名稱
-            initfun.ServiceName = init_sys_status.Text.Trim();       //設定DB連線服務器名稱
+            fun.ServiceName = init_sys_status.Text.Trim();           //設定DB連線伺服器名稱
+            initfun.ServiceName = init_sys_status.Text.Trim();       //設定DB連線伺服器名稱
             fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value);         //取得本機MAC及IP
 
             #region panel元件<顯示>or<隱藏>
@@ -1001,6 +1001,7 @@ namespace 財產管理系統
             inSt.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             inSt.Location = new System.Drawing.Point(this.Left + btn_QueryEmpID.Right, this.Top + btn_QueryEmpID.Bottom);
             //############################################
+            inSt.init_Staff_ServerName = Service_ENV;
             inSt.ShowDialog();
 
         }
@@ -1084,6 +1085,7 @@ namespace 財產管理系統
             //設定init_Staff 新視窗的相對位置#############
             iAI.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             //############################################
+            iAI.init_Asset_ID_Set_ServerName = Service_ENV;
             iAI.ShowDialog();
         }
 
@@ -1098,6 +1100,7 @@ namespace 財產管理系統
             //設定init_Staff 新視窗的相對位置#############
             inCBO.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             //############################################
+            inCBO.init_ComboBox_Option_ServerName = Service_ENV;
             inCBO.Text = 下拉選項設定ToolStripMenuItem.Text;
             inCBO.ShowDialog();
         }
@@ -1675,6 +1678,7 @@ namespace 財產管理系統
             //設定init_Staff 新視窗的相對位置#############
             si.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             //############################################
+            si.init_index_ServerName = Service_ENV;
             si.Text = "檔案路徑資訊";                                
             si.ShowDialog();           
 

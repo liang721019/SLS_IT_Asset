@@ -13,16 +13,32 @@ namespace 財產管理系統
 {
     public partial class init_Asset_ID_Set : Form
     {
+        Asset_init_function fun = new Asset_init_function();
+        init_PRO iPO = null;
         public init_Asset_ID_Set(init_PRO x)
         {
             InitializeComponent();
             iPO = x;
 
         }
+
+        private void init_Asset_ID_Set_Load(object sender, EventArgs e)
+        {
+            this.MaximizeBox = false;       //最大化
+            this.MinimizeBox = false;       //最小化
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;     //限制使用者改變form大小
+            this.AutoSize = false;          //自動調整大小
+
+            default_start();
+        }
+
         #region 變數
         //=======================================================================================
-        Asset_init_function fun = new Asset_init_function();
-        init_PRO iPO = null;
+        public string init_Asset_ID_Set_ServerName      //設定or取得DB連線伺服器名稱
+        {
+            set;
+            get;
+        }
 
         public string AssetDB_SN          //GET_SQL方法中的流水號變數
         {
@@ -49,36 +65,36 @@ namespace 財產管理系統
         {
             if(xx == "公司代碼")
             {
-                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN]  where [SN_ID] = 'CT' order by [SN_NAME]";
+                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [dbo].[SLS_AssetSN]  where [SN_ID] = 'CT' order by [SN_NAME]";
             }
             else if (xx == "財產大類")
             {
-                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN]  where [SN_ID] = 'NO' order by [SN_NAME]";
+                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [dbo].[SLS_AssetSN]  where [SN_ID] = 'NO' order by [SN_NAME]";
             }
             else if (xx == "財產中類")
             {
-                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN]  where [SN_ID] = 'B' order by [SN_NAME]";
+                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [dbo].[SLS_AssetSN]  where [SN_ID] = 'B' order by [SN_NAME]";
             }
             else if (xx == "財產小類")
             {
-                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN]  where [SN_ID] = 'CT' order by [SN_NAME]";
+                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [dbo].[SLS_AssetSN]  where [SN_ID] = 'CT' order by [SN_NAME]";
             }
             else if (xx == "G")
             {
-                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN]  where [SN_ID] = 'IT' order by [SN_NAME]";
+                fun.Query_DB = @"SELECT	[SN_NAME],[SN_DES]  FROM [dbo].[SLS_AssetSN]  where [SN_ID] = 'IT' order by [SN_NAME]";
             }
             else if(xx == "流水號")
             {
                 AssetDB_SN = init_Asset_ID_CB1.SelectedValue.ToString() + init_Asset_ID_CB2.SelectedValue.ToString() + init_Asset_ID_CB3.SelectedValue.ToString();
 
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_ID_GET_SN] '"+AssetDB_SN+"'";
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_ID_GET_SN] '"+AssetDB_SN+"'";
             }
             else if (xx == "G_流水號")
             {
                 AssetDB_SN = init_Asset_ID_CB1.SelectedValue.ToString() + init_Asset_ID_CB2.SelectedValue.ToString() + init_Asset_ID_CB3.SelectedValue.ToString()
                             + init_Asset_ID_CB4.SelectedValue.ToString();
 
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_ID_GET_SN] '" + AssetDB_SN + "','G'";
+                fun.Query_DB = @"exec [dbo].[SLS_Asset_ID_GET_SN] '" + AssetDB_SN + "','G'";
             }
             
 
@@ -87,6 +103,7 @@ namespace 財產管理系統
         public void default_start()
         {
             this.Text = "建立財產編號";
+            fun.ServiceName = init_Asset_ID_Set_ServerName;     //設定DB連線伺服器名稱
             fun.CB_DMember = "SN_DES";
             fun.CB_VMember = "SN_NAME";
             Get_SQL("公司代碼");
@@ -196,17 +213,7 @@ namespace 財產管理系統
         }
 
         //=======================================================================================
-        #endregion
-
-        private void init_Asset_ID_Set_Load(object sender, EventArgs e)
-        {
-            this.MaximizeBox = false;       //最大化
-            this.MinimizeBox = false;       //最小化
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;     //限制使用者改變form大小
-            this.AutoSize = false;          //自動調整大小
-
-            default_start();
-        }
+        #endregion        
         
         #region button
         //=======================================================================================
@@ -255,11 +262,11 @@ namespace 財產管理系統
                 if (init_Asset_ID_GroupValue.Text != "")
                 {
                     #region 內容
-                    fun.Query_DB = @"SELECT [ID] FROM [TEST_SLSYHI].[dbo].[SLS_Asset] where [ID] = '" + init_Asset_ID_GroupValue.Text + "'";
+                    fun.Query_DB = @"SELECT [ID] FROM [dbo].[SLS_Asset] where [ID] = '" + init_Asset_ID_GroupValue.Text + "'";
                     fun.ProductDB_ds(fun.Query_DB);
                     if (fun.ds_index.Tables[0].Rows.Count == 1)
                     {
-                        fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_ID_GET_GSN] '" + init_Asset_ID_GroupValue.Text.Trim() + "'";
+                        fun.Query_DB = @"exec [dbo].[SLS_Asset_ID_GET_GSN] '" + init_Asset_ID_GroupValue.Text.Trim() + "'";
                         fun.ProductDB_ds(fun.Query_DB);
                         init_Asset_ID_Value.Text = init_Asset_ID_GroupValue.Text.Trim() + "-" + fun.ds_index.Tables[0].Rows[0]["SN_ID"].ToString();
                     }
@@ -352,11 +359,11 @@ namespace 財產管理系統
                     if (init_Asset_ID_GroupValue.Text != "")
                     {
                         #region 內容
-                        fun.Query_DB = @"SELECT [ID] FROM [TEST_SLSYHI].[dbo].[SLS_Asset] where [ID] = '" + init_Asset_ID_GroupValue.Text + "'";
+                        fun.Query_DB = @"SELECT [ID] FROM [dbo].[SLS_Asset] where [ID] = '" + init_Asset_ID_GroupValue.Text + "'";
                         fun.ProductDB_ds(fun.Query_DB);
                         if (fun.ds_index.Tables[0].Rows.Count == 1)
                         {
-                            fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_ID_GET_GSN] '" + init_Asset_ID_GroupValue.Text.Trim() + "'";
+                            fun.Query_DB = @"exec [dbo].[SLS_Asset_ID_GET_GSN] '" + init_Asset_ID_GroupValue.Text.Trim() + "'";
                             fun.ProductDB_ds(fun.Query_DB);
                             init_Asset_ID_Value.Text = init_Asset_ID_GroupValue.Text.Trim() + "-" + fun.ds_index.Tables[0].Rows[0]["SN_ID"].ToString();
                         }

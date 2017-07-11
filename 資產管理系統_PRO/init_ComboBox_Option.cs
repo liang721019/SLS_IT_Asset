@@ -34,6 +34,12 @@ namespace 財產管理系統
             get;
         }
 
+        public string init_ComboBox_Option_ServerName       //設定or取得DB連線伺服器名稱
+        {
+            set;
+            get;
+        }
+
         #endregion
 
         #region 方法
@@ -44,14 +50,14 @@ namespace 財產管理系統
             fun.Query_DB = "";
             if (xQL == "查詢")
             {
-                fun.Query_DB = @"SELECT [SN_Code],[SN_NAME],[SN_DES]  FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN]  where [SN_ID] ='" + init_CO_Query_CB.SelectedValue + "' order by 1";
+                fun.Query_DB = @"SELECT [SN_Code],[SN_NAME],[SN_DES]  FROM [dbo].[SLS_AssetSN]  where [SN_ID] ='" + init_CO_Query_CB.SelectedValue + "' order by 1";
             }
-
         }
 
         public void default_status()            //預設狀態
         {
             #region 內容
+            fun.ServiceName = init_ComboBox_Option_ServerName;      //設定DB連線伺服器名稱
             fun.Disabled_Panel_btn(init_CO_panel2);
             init_CO_Modify.Visible = false;
             init_CO_Del.Visible = false;
@@ -210,7 +216,7 @@ namespace 財產管理系統
             fun.Check_error = false;
             Co_SN_ID = init_CO_Query_CB.SelectedValue.ToString();       //取得ComboBox設定的Value
             //MessageBox.Show(Co_SN_ID);
-            fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSN_insert] '" +Co_SN_ID + "','" + tb_init_CO_Name.Text.Trim() + "','" + tb_init_CO_Other.Text.Trim() + "'";
+            fun.Query_DB = @"exec [dbo].[SLS_AssetSN_insert] '" +Co_SN_ID + "','" + tb_init_CO_Name.Text.Trim() + "','" + tb_init_CO_Other.Text.Trim() + "'";
             fun.Asset_ComboBox_Value_All(fun.Query_DB);
             
             if (fun.Check_error==false)

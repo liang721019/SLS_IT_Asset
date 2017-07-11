@@ -23,9 +23,31 @@ namespace 財產管理系統
         {
             InitializeComponent();
             iPO = iit;
-            
-
         }
+
+        private void System_index_Load(object sender, EventArgs e)
+        {
+            fun.ServiceName = init_index_ServerName;        //設定DB連線伺服器名稱
+            System_tb_01.ReadOnly = true;
+            System_tb_02.ReadOnly = true;
+            System_QAS_tb_01.ReadOnly = true;
+            System_QAS_tb_02.ReadOnly = true;
+            System_DEV_tb_01.ReadOnly = true;
+            System_DEV_tb_02.ReadOnly = true;
+            File_SAccress();
+            System_SettabControl.SelectedIndex = 0;
+            System_filebutton.Focus();
+        }
+
+        #region 變數
+        //===========================================================================
+        public string init_index_ServerName
+        {
+            set;
+            get;
+        }
+        //===========================================================================
+        #endregion
 
         #region 方法
         //===========================================================================
@@ -47,21 +69,7 @@ namespace 財產管理系統
              }
 
         }
-
-        private void System_index_Load(object sender, EventArgs e)
-        {
-            
-            System_tb_01.ReadOnly = true;
-            System_tb_02.ReadOnly = true;
-            System_QAS_tb_01.ReadOnly = true;
-            System_QAS_tb_02.ReadOnly = true;
-            System_DEV_tb_01.ReadOnly = true;
-            System_DEV_tb_02.ReadOnly = true;
-            File_SAccress();
-            System_SettabControl.SelectedIndex = 0;
-            System_filebutton.Focus();            
-        }
-
+        
         public void File_SAccress()            //檔案存放位置取得的方法
         {
             //x 資產主檔存放位置

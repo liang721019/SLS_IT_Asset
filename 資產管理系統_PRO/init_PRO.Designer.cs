@@ -1005,10 +1005,10 @@
             // 
             this.init_tabPage2.Controls.Add(this.dataGridView1);
             this.init_tabPage2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.init_tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.init_tabPage2.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage2.Name = "init_tabPage2";
             this.init_tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.init_tabPage2.Size = new System.Drawing.Size(1255, 625);
+            this.init_tabPage2.Size = new System.Drawing.Size(1255, 618);
             this.init_tabPage2.TabIndex = 1;
             this.init_tabPage2.Text = "財產異動記錄";
             this.init_tabPage2.UseVisualStyleBackColor = true;
@@ -1027,7 +1027,7 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1249, 619);
+            this.dataGridView1.Size = new System.Drawing.Size(1249, 612);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -1035,10 +1035,10 @@
             // 
             this.init_tabPage3.Controls.Add(this.dataGridView2);
             this.init_tabPage3.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.init_tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.init_tabPage3.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage3.Name = "init_tabPage3";
             this.init_tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.init_tabPage3.Size = new System.Drawing.Size(1255, 625);
+            this.init_tabPage3.Size = new System.Drawing.Size(1255, 618);
             this.init_tabPage3.TabIndex = 2;
             this.init_tabPage3.Text = "保管財產統計";
             this.init_tabPage3.UseVisualStyleBackColor = true;
@@ -1057,7 +1057,7 @@
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(1249, 619);
+            this.dataGridView2.Size = new System.Drawing.Size(1249, 612);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellDoubleClick);
             // 
@@ -1065,10 +1065,10 @@
             // 
             this.init_tabPage4.Controls.Add(this.dataGridView3);
             this.init_tabPage4.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.init_tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.init_tabPage4.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage4.Name = "init_tabPage4";
             this.init_tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.init_tabPage4.Size = new System.Drawing.Size(1255, 625);
+            this.init_tabPage4.Size = new System.Drawing.Size(1255, 618);
             this.init_tabPage4.TabIndex = 3;
             this.init_tabPage4.Text = "保管人所有資產";
             this.init_tabPage4.UseVisualStyleBackColor = true;
@@ -1087,7 +1087,7 @@
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(1249, 619);
+            this.dataGridView3.Size = new System.Drawing.Size(1249, 612);
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellDoubleClick);
             this.dataGridView3.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView3_CellMouseClick);
@@ -1096,10 +1096,10 @@
             // 
             this.init_tabPage5.BackColor = System.Drawing.Color.Transparent;
             this.init_tabPage5.Controls.Add(this.dataGridView4);
-            this.init_tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.init_tabPage5.Location = new System.Drawing.Point(4, 29);
             this.init_tabPage5.Name = "init_tabPage5";
             this.init_tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.init_tabPage5.Size = new System.Drawing.Size(1255, 625);
+            this.init_tabPage5.Size = new System.Drawing.Size(1255, 618);
             this.init_tabPage5.TabIndex = 4;
             this.init_tabPage5.Text = "其他查詢";
             // 
@@ -1117,7 +1117,7 @@
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dataGridView4.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(1249, 619);
+            this.dataGridView4.Size = new System.Drawing.Size(1249, 612);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellDoubleClick);
             // 

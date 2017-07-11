@@ -22,21 +22,51 @@ namespace 財產管理系統
             iPO = YY;
         }
 
+        private void init_Staff_Load(object sender, EventArgs e)
+        {
+            fun.ServiceName = init_Staff_ServerName;
+        }
+
+        #region 變數
+        //================================================================================
+        public string init_Staff_ServerName
+        {
+            set;
+            get;
+        }
+        //================================================================================
+        #endregion
+
+        #region 方法
+        //================================================================================
         private void Staff_Query_fun()
         {
             fun.Query_DB = @"SELECT [EMP_ID]			AS 員工編號
 	                               ,[EMP_Name]		AS 員工姓名
                               FROM [dbo].[SLS_AssetEmployees]
-                              where [EMP_ID] like '" + tb_EmpName.Text.Trim() + 
+                              where [EMP_ID] like '" + tb_EmpName.Text.Trim() +
                               @"%' or [EMP_Name] like '" + tb_EmpName.Text.Trim() +
-                              "%' order by 1,2" ;
+                              "%' order by 1,2";
             fun.xxx_DB(fun.Query_DB, this.dataGridView1);
 
         }
+        //================================================================================
+        #endregion
 
+        #region button
+        //================================================================================
+        private void Staff_Query_Click(object sender, EventArgs e)    //查詢
+        {
+            Staff_Query_fun();
+        }
+        //================================================================================
+        #endregion
+
+        #region 事件
+        //================================================================================
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)  //datagridview1資料點二下要做的事情
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 //iPO.dataGridView3.Columns.Clear();
                 string UID1 = this.dataGridView1.CurrentRow.Cells[0].Value.ToString();
@@ -49,28 +79,32 @@ namespace 財產管理系統
                                     where [EMP_ID] = '" + UID1 + "'";
                 fun.ProductDB_ds(fun.Query_DB);
                 iPO.tb_OwnerID.Text = fun.ds_index.Tables[0].Rows[0]["員工編號"].ToString();
-                iPO.tb_Owner_NM.Text = fun.ds_index.Tables[0].Rows[0]["員工姓名"].ToString(); 
-                iPO.tb_OwnerDept_Lv1.Text = fun.ds_index.Tables[0].Rows[0]["部門"].ToString();                
+                iPO.tb_Owner_NM.Text = fun.ds_index.Tables[0].Rows[0]["員工姓名"].ToString();
+                iPO.tb_OwnerDept_Lv1.Text = fun.ds_index.Tables[0].Rows[0]["部門"].ToString();
 
                 this.Close();
 
             }
         }
 
-        private void Staff_Query_Click(object sender, EventArgs e)    //查詢
-        {
-            Staff_Query_fun();
-        }
-
         private void tb_EmpName_KeyDown(object sender, KeyEventArgs e)      //員工姓名按Enter要處理的事
         {
-            if(e.KeyCode ==Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 Staff_Query_fun();
             }
-            
-
-
         }
+        //================================================================================
+        #endregion
+
+
+        
+
+        
+
+        
+
+        
+        
     }
 }

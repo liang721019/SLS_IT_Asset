@@ -131,6 +131,7 @@
             this.MinimizeBox = false;
             this.Name = "init_Staff";
             this.Text = "員工資料查詢";
+            this.Load += new System.EventHandler(this.init_Staff_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
