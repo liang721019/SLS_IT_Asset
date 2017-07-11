@@ -66,22 +66,22 @@ namespace 財產管理系統
         {
             //x 資產主檔存放位置
             //y 資產異動存放位置
-            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = '001'";
+            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = '001'";
             fun.ProductDB_ds(fun.Query_DB);
             System_tb_01.Text = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString();
-            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = '002'";
+            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = '002'";
             fun.ProductDB_ds(fun.Query_DB);
             System_tb_02.Text = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString();
-            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'QAS001'";
+            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'QAS001'";
             fun.ProductDB_ds(fun.Query_DB);
             System_QAS_tb_01.Text = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString();
-            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'QAS002'";
+            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'QAS002'";
             fun.ProductDB_ds(fun.Query_DB);
             System_QAS_tb_02.Text = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString();
-            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'DEV001'";
+            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'DEV001'";
             fun.ProductDB_ds(fun.Query_DB);
             System_DEV_tb_01.Text = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString();
-            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'DEV002'";
+            fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'DEV002'";
             fun.ProductDB_ds(fun.Query_DB);
             System_DEV_tb_02.Text = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString();
 
@@ -97,9 +97,9 @@ namespace 財產管理系統
                         #region PRD更新
                         if (MessageBox.Show("確定要修改？", "警告!!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            fun.Query_DB = @"update [TEST_SLSYHI].[dbo].[SLS_AssetInfo] set [info_2] = '" + System_tb_01.Text + "' where info_1 = '001'";
+                            fun.Query_DB = @"update [dbo].[SLS_AssetInfo] set [info_2] = '" + System_tb_01.Text + "' where info_1 = '001'";
                             fun.DB_PJ_insert(fun.Query_DB, null, "更新成功", "系統訊息");
-                            fun.Query_DB = @"update [TEST_SLSYHI].[dbo].[SLS_AssetInfo] set [info_2] = '" + System_tb_02.Text + "' where info_1 = '002'";
+                            fun.Query_DB = @"update [dbo].[SLS_AssetInfo] set [info_2] = '" + System_tb_02.Text + "' where info_1 = '002'";
                             fun.DB_PJ_insert(fun.Query_DB, null, "更新成功", "系統訊息");
                             break;
                         }
@@ -114,9 +114,9 @@ namespace 財產管理系統
                         #region QAS更新
                         if (MessageBox.Show("確定要修改？", "警告!!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            fun.Query_DB = @"update [TEST_SLSYHI].[dbo].[SLS_AssetInfo] set [info_2] = '" + System_QAS_tb_01.Text + "' where info_1 = 'QAS001'";
+                            fun.Query_DB = @"update [dbo].[SLS_AssetInfo] set [info_2] = '" + System_QAS_tb_01.Text + "' where info_1 = 'QAS001'";
                             fun.DB_PJ_insert(fun.Query_DB, null, "更新成功", "系統訊息");
-                            fun.Query_DB = @"update [TEST_SLSYHI].[dbo].[SLS_AssetInfo] set [info_2] = '" + System_QAS_tb_02.Text + "' where info_1 = 'QAS002'";
+                            fun.Query_DB = @"update [dbo].[SLS_AssetInfo] set [info_2] = '" + System_QAS_tb_02.Text + "' where info_1 = 'QAS002'";
                             fun.DB_PJ_insert(fun.Query_DB, null, "更新成功", "系統訊息");
                             break;
                         }
@@ -132,9 +132,9 @@ namespace 財產管理系統
                         #region DEV更新
                         if (MessageBox.Show("確定要修改？", "警告!!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            fun.Query_DB = @"update [TEST_SLSYHI].[dbo].[SLS_AssetInfo] set [info_2] = '" + System_DEV_tb_01.Text + "' where info_1 = 'DEV001'";
+                            fun.Query_DB = @"update [dbo].[SLS_AssetInfo] set [info_2] = '" + System_DEV_tb_01.Text + "' where info_1 = 'DEV001'";
                             fun.DB_PJ_insert(fun.Query_DB, null, "更新成功", "系統訊息");
-                            fun.Query_DB = @"update [TEST_SLSYHI].[dbo].[SLS_AssetInfo] set [info_2] = '" + System_DEV_tb_02.Text + "' where info_1 = 'DEV002'";
+                            fun.Query_DB = @"update [dbo].[SLS_AssetInfo] set [info_2] = '" + System_DEV_tb_02.Text + "' where info_1 = 'DEV002'";
                             fun.DB_PJ_insert(fun.Query_DB, null, "更新成功", "系統訊息");
                             break;
                         }

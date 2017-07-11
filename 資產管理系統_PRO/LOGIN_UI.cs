@@ -30,9 +30,7 @@ namespace 財產管理系統
                 init_PRO iPO = new init_PRO();
                 //設定init_Staff 新視窗的相對位置#############
                 iPO.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-                //############################################
-                //string Query_DB = @"select * from [dbo].[SLS_Asset_LOGINTemp]('" + UID + "')";
-                //iPO.AssetFUN.USER_INFO(Query_DB, iPO.MYDS.Tables["SLS_Asset_LOGIN"]);         //登入後載入使用者資訊至DS                
+                //############################################                                
                 DataRow iPODR = iPO.MYDS.SLS_Asset_LOGIN.NewRow();
                 iPODR["EMP_ID"] = LOD_DT.Rows[0]["EMP_ID"];
                 iPODR["EMP_Name"] = LOD_DT.Rows[0]["EMP_Name"];
@@ -47,7 +45,7 @@ namespace 財產管理系統
                 iPODR["Del_Flag"] = LOD_DT.Rows[0]["Del_Flag"];
                 iPO.MYDS.SLS_Asset_LOGIN.Rows.Add(iPODR);
                 iPO.MYDS.SLS_Asset_LOGIN.AcceptChanges();
-                iPO.Service_ENV = ServerName;       //server
+                iPO.Service_ENV = GETServerName;       //server
                 iPO.UID = UID;          //使用者ID
                 this.Hide();
                 iPO.ShowDialog(this);

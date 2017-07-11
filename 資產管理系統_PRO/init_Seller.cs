@@ -73,11 +73,11 @@ namespace 財產管理系統
         {
             if (x == Seller_Query_button)           //<廠商查詢>
             {
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'B','" + tb_retailNM.Text.Trim() + "'";
+                fun.Query_DB = @"exec [dbo].[SLS_AssetSeller_Query] 'B','" + tb_retailNM.Text.Trim() + "'";
             }
             else if (x == Seller_AddNew_button)               //<廠商新增>
             {
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_insert] '" +
+                fun.Query_DB = @"exec [dbo].[SLS_AssetSeller_insert] '" +
                                  tb_retailNM.Text.Trim() +                             //<廠商名稱>
                                  @"','" + tb_retail_Contact_NM.Text.Trim() +          //<聯絡人>
                                  @"','" + tb_retailSAPSN.Text.Trim() +                //<SAP編號>
@@ -88,7 +88,7 @@ namespace 財產管理系統
             }
             else if (x == Seller_Modify_button)               //<廠商修改>
             {
-                fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_updata] '" +
+                fun.Query_DB = @"exec [dbo].[SLS_AssetSeller_updata] '" +
                         tb_retail_ID.Text.Trim() +
                         @"','" + tb_retailNM.Text.Trim() +
                         @"','" + tb_retail_Contact_NM.Text.Trim() +
@@ -241,7 +241,7 @@ namespace 財產管理系統
                 if (e.RowIndex >= 0)
                 {
                     string seller_ID = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                    fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'A','" + seller_ID + @"'";
+                    fun.Query_DB = @"exec [dbo].[SLS_AssetSeller_Query] 'A','" + seller_ID + @"'";
                     fun.ProductDB_ds(fun.Query_DB);
                     iPO.tb_retail_ID.Text = fun.ds_index.Tables[0].Rows[0]["廠商編號"].ToString();
                     iPO.tb_retailNM.Text = fun.ds_index.Tables[0].Rows[0]["廠商名稱"].ToString();
@@ -264,7 +264,7 @@ namespace 財產管理系統
                 if (e.RowIndex >= 0)
                 {
                     string seller_ID = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                    fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'C','" + seller_ID + @"'";
+                    fun.Query_DB = @"exec [dbo].[SLS_AssetSeller_Query] 'C','" + seller_ID + @"'";
                     fun.ProductDB_ds(fun.Query_DB);
                     tb_retail_ID.Text = fun.ds_index.Tables[0].Rows[0]["廠商編號"].ToString();
                     tb_retailNM.Text = fun.ds_index.Tables[0].Rows[0]["廠商名稱"].ToString();
@@ -387,7 +387,7 @@ namespace 財產管理系統
                 if (tb_retail_ID.Text != "")
                 {
                     string seller_ID = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                    fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_AssetSeller_Query] 'A','" + seller_ID + @"'";
+                    fun.Query_DB = @"exec [dbo].[SLS_AssetSeller_Query] 'A','" + seller_ID + @"'";
                     fun.ProductDB_ds(fun.Query_DB);
                     iPO.tb_retail_ID.Text = fun.ds_index.Tables[0].Rows[0]["廠商編號"].ToString();
                     iPO.tb_retailNM.Text = fun.ds_index.Tables[0].Rows[0]["廠商名稱"].ToString();

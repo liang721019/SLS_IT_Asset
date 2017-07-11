@@ -26,7 +26,7 @@ namespace 財產管理系統
         {
             fun.Query_DB = @"SELECT [EMP_ID]			AS 員工編號
 	                               ,[EMP_Name]		AS 員工姓名
-                              FROM [TEST_SLSYHI].[dbo].[SLS_AssetEmployees]
+                              FROM [dbo].[SLS_AssetEmployees]
                               where [EMP_ID] like '" + tb_EmpName.Text.Trim() + 
                               @"%' or [EMP_Name] like '" + tb_EmpName.Text.Trim() +
                               "%' order by 1,2" ;
@@ -45,7 +45,7 @@ namespace 財產管理系統
             	                    ,[EMP_Name]		AS 員工姓名                                    
             	                    ,[Dept_No]		AS 部門代碼
                                     ,[Dept]			AS 部門
-                                    FROM [TEST_SLSYHI].[dbo].[SLS_AssetEmployees]
+                                    FROM [dbo].[SLS_AssetEmployees]
                                     where [EMP_ID] = '" + UID1 + "'";
                 fun.ProductDB_ds(fun.Query_DB);
                 iPO.tb_OwnerID.Text = fun.ds_index.Tables[0].Rows[0]["員工編號"].ToString();

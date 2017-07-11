@@ -294,6 +294,9 @@ namespace 財產管理系統
             this.Text = SYS_TXT;
             
             init_toolStrip_UID_Value.Text = UID;
+            init_sys_status.Text = Service_ENV;             //取得DB連線名稱
+            fun.ServiceName = init_sys_status.Text.Trim();           //設定DB連線服務器名稱
+            initfun.ServiceName = init_sys_status.Text.Trim();       //設定DB連線服務器名稱
             fun.ReMAC(init_toolStrip_MAC_Value, init_toolStrip_IP_Value);         //取得本機MAC及IP
 
             #region panel元件<顯示>or<隱藏>
@@ -494,15 +497,15 @@ namespace 財產管理系統
 
         public void combobox_set()  //combobox設定
         {
-            Query_DB_AssetATR = @"SELECT [SN_NAME] FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN] where [SN_ID] = 'A'";
+            Query_DB_AssetATR = @"SELECT [SN_NAME] FROM [dbo].[SLS_AssetSN] where [SN_ID] = 'A'";
             fun.ComboboxDB(Query_DB_AssetATR, "SN_NAME", cb_AssetATR);
-            Query_DB_AssetATR = @"SELECT [SN_NAME], [SN_NAME]+'-'+[SN_DES] AS SName FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN] where [SN_ID] = 'B'";
+            Query_DB_AssetATR = @"SELECT [SN_NAME], [SN_NAME]+'-'+[SN_DES] AS SName FROM [dbo].[SLS_AssetSN] where [SN_ID] = 'B'";
             fun.ComboboxDB(Query_DB_AssetATR, "SN_NAME", cb_AssetClass);
-            Query_DB_AssetATR = @"SELECT [SN_NAME] FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN] where [SN_ID] = 'C'";
+            Query_DB_AssetATR = @"SELECT [SN_NAME] FROM [dbo].[SLS_AssetSN] where [SN_ID] = 'C'";
             fun.ComboboxDB(Query_DB_AssetATR, "SN_NAME", cb_AssetStat);
-            Query_DB_AssetATR = @"SELECT [SN_NAME] FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN] where [SN_ID] = 'U'";
+            Query_DB_AssetATR = @"SELECT [SN_NAME] FROM [dbo].[SLS_AssetSN] where [SN_ID] = 'U'";
             fun.ComboboxDB(Query_DB_AssetATR, "SN_NAME", cb_Unit);
-            Query_DB_AssetATR = @"SELECT [SN_NAME] FROM [TEST_SLSYHI].[dbo].[SLS_AssetSN] where [SN_ID] = 'OT'";
+            Query_DB_AssetATR = @"SELECT [SN_NAME] FROM [dbo].[SLS_AssetSN] where [SN_ID] = 'OT'";
             fun.ComboboxDB(Query_DB_AssetATR, "SN_NAME", cb_StoredLoc);
 
         }                 
@@ -723,6 +726,7 @@ namespace 財產管理系統
         private void 登出Button()             //登出
         {
             #region 內容
+            SYS_log("登出");
             LOGIN_UI Login = new LOGIN_UI();
             this.Hide();
             Login.ShowDialog();
@@ -741,19 +745,19 @@ namespace 財產管理系統
             //Sys_Asset_ModifyInfo =y
             if (init_sys_status.Text == "PRD")
             {
-                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = '001'";
+                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = '001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
                 Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
-                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = '002'";
+                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = '002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
                 Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper(); 
             }
             else if (init_sys_status.Text == "QAS")
             {
-                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'QAS001'";
+                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'QAS001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
                 Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper(); ;
-                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'QAS002'";
+                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'QAS002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
                 Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
                 
@@ -761,10 +765,10 @@ namespace 財產管理系統
             }
             else if (init_sys_status.Text == "DEV")
             {
-                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'DEV001'";
+                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'DEV001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
                 Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
-                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'DEV002'";
+                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'DEV002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
                 Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
 
@@ -801,28 +805,28 @@ namespace 財產管理系統
             #region 系統狀態
             if (init_sys_status.Text == "PRD")
             {               
-                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = '001'";
+                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = '001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
                 Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() +"\\" + tb_Asset_ID.Text.ToUpper();
-                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = '002'";
+                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = '002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
                 Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
             }
             else if (init_sys_status.Text == "QAS")
             {
-                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'QAS001'";
+                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'QAS001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
                 Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
-                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'QAS002'";
+                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'QAS002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
                 Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
             }
             else if (init_sys_status.Text == "DEV")
             {
-                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'DEV001'";
+                fun.Query_DB = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'DEV001'";
                 fun.Asset_AccressDB_ds(fun.Query_DB);
                 Sys_AssetCard_Accress = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
-                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [TEST_SLSYHI].[dbo].[SLS_AssetInfo]  where [info_1] = 'DEV002'";
+                fun.Query_DB_01 = @"SELECT [info_2] as 檔案位置  FROM [dbo].[SLS_AssetInfo]  where [info_1] = 'DEV002'";
                 fun.Asset_AccressDB_ds(fun.Query_DB_01);
                 Sys_Asset_ModifyInfo = fun.ds_index.Tables[0].Rows[0]["檔案位置"].ToString() + "\\" + tb_Asset_ID.Text.ToUpper();
 
@@ -1506,7 +1510,7 @@ namespace 財產管理系統
                 string seller_ID_EID = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 string seller_ID1 = dataGridView1.CurrentRow.Cells[7].Value.ToString();
                 string seller_ID2 = dataGridView1.CurrentRow.Cells[8].Value.ToString();
-                string QD = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_Transcation_Query] '" + seller_ID + seller_ID_EID + seller_ID1 + seller_ID2 + "'";
+                string QD = @"exec [dbo].[SLS_Asset_Transcation_Query] '" + seller_ID + seller_ID_EID + seller_ID1 + seller_ID2 + "'";
                             
                 fun.ProductDB_ds(QD);         //連接DB-執行DB指令                
                 string Transaction_FileName = fun.ds_index.Tables[0].Rows[0]["Asset_Position"].ToString();
@@ -1544,7 +1548,7 @@ namespace 財產管理系統
             	                    ,[EMP_Name]		AS 員工姓名                                    
             	                    ,[Dept_No]		AS 部門代碼
                                     ,[Dept]			AS 部門
-                                    FROM [TEST_SLSYHI].[dbo].[SLS_AssetEmployees]
+                                    FROM [dbo].[SLS_AssetEmployees]
                                     where [EMP_ID] = '" + seller_ID + "'";
                     fun.ProductDB_ds(fun.Query_DB);
                     tb_OwnerID.Text = fun.ds_index.Tables[0].Rows[0]["員工編號"].ToString();
@@ -1585,7 +1589,7 @@ namespace 財產管理系統
                     if (this.Text == SYS_TXT)
                     {
                         string seller_ID = dataGridView3.CurrentRow.Cells["資產編號"].Value.ToString();
-                        fun.Query_DB = @"exec [TEST_SLSYHI].[dbo].[SLS_Asset_Query] '" + seller_ID + @"'";
+                        fun.Query_DB = @"exec [dbo].[SLS_Asset_Query] '" + seller_ID + @"'";
                         fun.ProductDB_ds(fun.Query_DB);
                         tb_Asset_ID.Text = fun.ds_index.Tables[0].Rows[0]["資產編號"].ToString();
                         tb_Asset_NM.Text = fun.ds_index.Tables[0].Rows[0]["資產名稱"].ToString();
