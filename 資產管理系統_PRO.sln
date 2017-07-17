@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "財產管理系統", "資產管理系統_PRO\財產管理系統.csproj", "{30DFD790-A8EE-4BF6-9AA4-CDA31D59B2F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "function", "..\Liang_function\function\function.csproj", "{9DFD315F-87BA-4EA3-809D-1D349F464278}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,16 +25,6 @@ Global
 		{30DFD790-A8EE-4BF6-9AA4-CDA31D59B2F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{30DFD790-A8EE-4BF6-9AA4-CDA31D59B2F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{30DFD790-A8EE-4BF6-9AA4-CDA31D59B2F7}.Release|x86.ActiveCfg = Release|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9DFD315F-87BA-4EA3-809D-1D349F464278}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

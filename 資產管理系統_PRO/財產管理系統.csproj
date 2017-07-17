@@ -87,6 +87,10 @@
     <Reference Include="DocX">
       <HintPath>..\..\..\..\source\資產管理系統_20160106_V2\packages\DocX.1.0.0.22\lib\net40\DocX.dll</HintPath>
     </Reference>
+    <Reference Include="function, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\function.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\..\..\source\資產管理系統_20160106_V2\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -260,12 +264,6 @@
       <WrapperTool>aximp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Liang_function\function\function.csproj">
-      <Project>{9dfd315f-87ba-4ea3-809d-1d349f464278}</Project>
-      <Name>function</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
