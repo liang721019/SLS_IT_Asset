@@ -35,6 +35,7 @@ namespace 財產管理系統
         init_function initfun = new init_function();
         Asset_DS AssetDS = new Asset_DS();        
         
+
         public init_PRO()
         {
             InitializeComponent();
